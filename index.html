@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jörn Hoppe — Senior Logistics Executive | AI in Logistics &amp; Supply Chain</title>
+<meta name="description" content="Jörn Hoppe — Senior logistics and ocean freight executive with 20+ years leading international teams and P&amp;L, now building a second track record in AI-enabled logistics transformation.">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --bg-alt: #ffffff;
+    --text: #1a2332;
+    --text-muted: #566072;
+    --border: #e2e6ec;
+    --accent: #0e6e6e;
+    --accent-strong: #095656;
+    --accent-soft: #e6f3f2;
+    --chip-bg: #eef1f5;
+    --shadow: 0 1px 3px rgba(20, 30, 45, 0.06), 0 8px 24px rgba(20, 30, 45, 0.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10151d;
+      --bg-alt: #161d27;
+      --text: #e8edf3;
+      --text-muted: #96a3b5;
+      --border: #263141;
+      --accent: #4fd1c5;
+      --accent-strong: #7ee3d8;
+      --accent-soft: #17302f;
+      --chip-bg: #1c2531;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8fa; --bg-alt: #ffffff; --text: #1a2332; --text-muted: #566072;
+    --border: #e2e6ec; --accent: #0e6e6e; --accent-strong: #095656;
+    --accent-soft: #e6f3f2; --chip-bg: #eef1f5;
+    --shadow: 0 1px 3px rgba(20, 30, 45, 0.06), 0 8px 24px rgba(20, 30, 45, 0.04);
+  }
+  :root[data-theme="dark"] {
+    --bg: #10151d; --bg-alt: #161d27; --text: #e8edf3; --text-muted: #96a3b5;
+    --border: #263141; --accent: #4fd1c5; --accent-strong: #7ee3d8;
+    --accent-soft: #17302f; --chip-bg: #1c2531;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); }
+
+  /* Hero */
+  header.hero {
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+  .headline {
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    color: var(--text-muted);
+    margin: 0 0 22px;
+    max-width: 640px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .chip {
+    font-size: 13px;
+    background: var(--chip-bg);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #ffffff; }
+  .btn-primary:hover { background: var(--accent-strong); }
+  .btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin: 0 0 24px;
+    font-weight: 700;
+  }
+  .lede { font-size: 17px; max-width: 720px; color: var(--text); }
+
+  /* Achievements */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 760px) { .grid-3 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+  }
+  .card .stat {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .card p { margin: 0; font-size: 14px; color: var(--text-muted); }
+
+  /* Strengths */
+  .strength h3 {
+    font-size: 15px;
+    margin: 0 0 12px;
+    color: var(--text);
+  }
+  .strength ul { margin: 0; padding-left: 18px; color: var(--text-muted); font-size: 14px; }
+  .strength li { margin-bottom: 6px; }
+
+  /* Experience */
+  .job {
+    position: relative;
+    padding: 0 0 36px 28px;
+    border-left: 2px solid var(--border);
+  }
+  .job:last-child { padding-bottom: 0; }
+  .job::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .job .role { font-size: 17px; font-weight: 700; margin: 0 0 2px; }
+  .job .org {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .job .when { font-size: 13px; color: var(--text-muted); margin: 0 0 12px; }
+  .job ul { margin: 0; padding-left: 18px; font-size: 14.5px; color: var(--text); }
+  .job li { margin-bottom: 6px; }
+  .job .impact {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .impact strong { color: var(--accent-strong); }
+
+  .earlier {
+    margin-top: 8px;
+  }
+  .earlier-item {
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+  }
+  .earlier-item:first-child { border-top: none; }
+  .earlier-item .role { font-weight: 700; font-size: 14.5px; }
+  .earlier-item .org { color: var(--text-muted); font-size: 13px; }
+  .earlier-item p { margin: 6px 0 0; font-size: 13.5px; color: var(--text-muted); }
+
+  /* AI focus */
+  .ai-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .ai-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 15px;
+  }
+  .ai-list .dot {
+    flex: none;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 8px;
+  }
+
+  /* Education / footer */
+  .edu-item { margin-bottom: 14px; }
+  .edu-item .role { font-weight: 700; font-size: 14.5px; }
+  .edu-item .org { color: var(--text-muted); font-size: 13.5px; }
+
+  footer {
+    padding: 48px 0 64px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Jörn Hoppe</p>
+    <h1>Senior Logistics Executive<br>AI in Logistics &amp; Supply Chain</h1>
+    <p class="headline">20+ years leading international ocean freight teams and P&amp;L across Europe, Asia and the Americas — now building a second track record turning AI capabilities into governed, measurable improvements for logistics organizations.</p>
+    <div class="meta-row">
+      <span class="chip">Bremen, Germany</span>
+      <span class="chip">German citizen · Hong Kong permanent resident</span>
+      <span class="chip">German (native) · English (professional)</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="btn btn-secondary" href="mailto:Joern_Hoppe@outlook.com">Joern_Hoppe@outlook.com</a>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="wrap">
+    <h2>Executive Profile</h2>
+    <p class="lede">Senior logistics and ocean freight executive with 20+ years leading international teams and P&amp;L across Europe, Asia and the Americas, combining deep operational and commercial expertise with a modern focus on AI-enabled transformation. Now building a practitioner track record in logistics AI — turning emerging AI capabilities into practical, governed and measurable improvements that make teams faster, more data-driven and more resilient.</p>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <h2>Key Achievements</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat">~$130M</div>
+        <p>Turned a loss-making ocean freight business around to sustained EBIT profitability within 12 months (CEVA Germany, 2021–2022).</p>
+      </div>
+      <div class="card">
+        <div class="stat">~500</div>
+        <p>People led across P&amp;L portfolios up to USD 130M, spanning Germany and Greater China.</p>
+      </div>
+      <div class="card">
+        <div class="stat">2024→</div>
+        <p>Pioneering AI-enabled transformation in ocean carrier &amp; yield management at DHL Global Forwarding — from manual reporting to AI-assisted market intelligence and decision support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strengths">
+  <div class="wrap">
+    <h2>Core Strengths</h2>
+    <div class="grid-3">
+      <div class="strength">
+        <h3>Logistics Leadership</h3>
+        <ul>
+          <li>Ocean freight product leadership</li>
+          <li>Carrier, capacity &amp; yield management</li>
+          <li>P&amp;L ownership and business turnaround</li>
+          <li>Customer implementation &amp; SOP design</li>
+          <li>Procurement, tender &amp; pricing governance</li>
+        </ul>
+      </div>
+      <div class="strength">
+        <h3>AI &amp; Digital Transformation</h3>
+        <ul>
+          <li>AI adoption in day-to-day logistics workflows</li>
+          <li>Automation of reporting &amp; market intelligence</li>
+          <li>Microsoft 365 Copilot &amp; productivity use cases</li>
+          <li>Data-driven decision support</li>
+          <li>Knowledge management &amp; workflow design</li>
+        </ul>
+      </div>
+      <div class="strength">
+        <h3>Entrepreneurial Profile</h3>
+        <ul>
+          <li>Practical innovation mindset</li>
+          <li>End-to-end supply chain perspective</li>
+          <li>Human-centric change enablement</li>
+          <li>Bridges business and technology</li>
+          <li>Strong global network across freight forwarding &amp; carriers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <p class="role">Senior Manager Global Ocean Carrier &amp; Yield Management</p>
+      <p class="org">DHL Global Forwarding · Bremen, Germany</p>
+      <p class="when">May 2024 – Present</p>
+      <ul>
+        <li>Lead carrier and yield-related activities, translating market intelligence and carrier developments into commercial guidance for leadership decision-making.</li>
+        <li>Drive AI-assisted ways of working — from automated reporting and market intelligence to Copilot-based collaboration — to improve speed, consistency and decision quality.</li>
+        <li>Champion responsible AI adoption with realistic business cases, strong governance, data quality and user acceptance.</li>
+      </ul>
+      <div class="impact"><strong>Selected impact:</strong> Leading early Copilot adoption in Carrier &amp; Yield Management — onboarded 6 team members, moved the first recurring report to Copilot-assisted production, and reviewed and refined the complete Smart Engine functional specification (FSD) for AI orchestration.</div>
+    </div>
+
+    <div class="job">
+      <p class="role">Director Ocean Product Services — Germany, Austria, Switzerland &amp; Eastern Europe</p>
+      <p class="org">Crane Worldwide Germany GmbH · Hamburg, Germany</p>
+      <p class="when">Apr 2023 – May 2024</p>
+      <ul>
+        <li>Led a 20-person ocean organization with shared P&amp;L responsibility, including planning, execution and business reviews with country management.</li>
+        <li>Built a standalone ocean pricing and procurement setup, including a structured rate repository and improved sales communication.</li>
+        <li>Established back-office support in India and standardized onboarding and process training for ocean staff.</li>
+        <li>Drove customer implementations, tender management and business development through customer-facing ocean capability presentations.</li>
+      </ul>
+      <div class="impact"><strong>Selected impact:</strong> Built a more structured and scalable ocean operating model, strengthening commercial responsiveness, process discipline and organizational clarity.</div>
+    </div>
+
+    <div class="job">
+      <p class="role">Head of Ocean DACH — Germany, Austria &amp; Switzerland</p>
+      <p class="org">CEVA Logistics · Hong Kong &amp; Bremen, Germany</p>
+      <p class="when">Dec 2020 – Feb 2023</p>
+      <ul>
+        <li>Led an 80-person ocean organization with full P&amp;L ownership (~USD 130M), including budget, execution and monthly European management reviews.</li>
+        <li>Turned around a loss-making ocean business to sustained EBIT profitability in 2021–2022.</li>
+        <li>Reorganized export and import departments and stood up service centers for invoicing, file creation and customer reporting.</li>
+        <li>Served on the European Ocean Management Team as executive sponsor for productivity, cost and centralization initiatives.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <p class="role">Director Global Ocean Allocation &amp; Operations Management</p>
+      <p class="org">CEVA Logistics · Hong Kong</p>
+      <p class="when">Apr 2017 – Mar 2021</p>
+      <ul>
+        <li>Governed global ocean operations processes, work instructions and country performance reviews.</li>
+        <li>Designed CEVA's ocean allocation management process and led a team of allocation managers across FEWB, TPEB, ANZ and LATAM trades.</li>
+        <li>Contributed to shared service center development, offshoring and major ocean IT implementations, including myCEVA's online quotation and booking capability.</li>
+      </ul>
+      <div class="impact"><strong>Selected impact:</strong> Standardized global ocean allocation planning across FEWB, TPEB, ANZ and LATAM trades and supported the rollout of myCEVA's online quotation and booking capability.</div>
+    </div>
+
+    <div class="earlier">
+      <p class="role" style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Earlier Career Highlights</p>
+
+      <div class="earlier-item">
+        <p class="role">General Manager Ocean Operations Management, Greater China</p>
+        <p class="org">CEVA Logistics · Hong Kong · 2015 – 2017</p>
+        <p>Led approximately 500 ocean export and import operators across China, Hong Kong and Taiwan; shared P&amp;L responsibility above USD 35M; improved productivity in key stations and strengthened governance, training and shared-service structures.</p>
+      </div>
+      <div class="earlier-item">
+        <p class="role">Manager Global Business Process Ocean</p>
+        <p class="org">CEVA Logistics · Hong Kong · 2014 – 2015</p>
+        <p>Governed global standard ocean operations processes and supported development, testing, training and deployment of global process and system tools, including EDI, allocation, reporting and compliance-related solutions.</p>
+      </div>
+      <div class="earlier-item">
+        <p class="role">Business SME / Project Manager / Process Specialist</p>
+        <p class="org">CEVA Logistics · Bremen &amp; Hong Kong · 2011 – 2014</p>
+        <p>Led international process transformation and rollout projects across regions, translating business requirements into operational tools, training and standardized workflows.</p>
+      </div>
+      <div class="earlier-item">
+        <p class="role">Ocean Export, Pricing &amp; Development Leadership Roles</p>
+        <p class="org">Eagle Global Logistics / CEVA Logistics / Group7 · Bremen, Germany · 2003 – 2011</p>
+        <p>Progressed through operational, pricing, customer service, sales support and supervisory roles covering ocean and air freight, contract management, tender support, customer implementations and apprentice training.</p>
+      </div>
+      <div class="earlier-item">
+        <p class="role">Apprenticeship</p>
+        <p class="org">Circle International · Bremen, Germany · 2000 – 2003</p>
+        <p>Completed commercial freight forwarding training across airfreight, ocean freight, road freight, warehousing and finance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai-focus">
+  <div class="wrap">
+    <h2>AI, Innovation &amp; Entrepreneurial Focus</h2>
+    <ul class="ai-list">
+      <li><span class="dot"></span>Building a practical AI-in-logistics profile centered on implementation, adoption and measurable business value — not technology hype.</li>
+      <li><span class="dot"></span>Hands-on practitioner: runs a self-hosted AI agent platform and several self-built AI-powered apps in daily use — practical experience with agentic workflows, orchestration and knowledge automation.</li>
+      <li><span class="dot"></span>Completed DHL Global Forwarding's full internal AI training curriculum; selected for the AI Pioneer Program (2026).</li>
+      <li><span class="dot"></span>Long-term ambition: become an entrepreneurial AI expert for logistics and supply chain organizations, connecting deep industry experience with practical AI solution design.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <div class="edu-item">
+      <p class="role">Commercial Training Certificate</p>
+      <p class="org">Business School Ellmerstrasse · Bremen, Germany · Aug 2000 – Jan 2003</p>
+    </div>
+    <div class="edu-item">
+      <p class="role">Advanced Certificate of Secondary Education</p>
+      <p class="org">Secondary School Thedinghausen · Thedinghausen, Germany · Jul 1994 – Jul 2000</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:Joern_Hoppe@outlook.com">Email</a>
+      <a href="https://github.com/JoernHoppe" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p>© 2026 Jörn Hoppe · Bremen, Germany</p>
+  </div>
+</footer>
+
+</body>
+</html>
