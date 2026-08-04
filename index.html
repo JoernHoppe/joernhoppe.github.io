@@ -4,67 +4,82 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jörn Hoppe — Senior Logistics Executive | AI in Logistics &amp; Supply Chain</title>
-<meta name="description" content="Jörn Hoppe — Senior logistics and ocean freight executive with 20+ years leading international teams and P&amp;L, now building a second track record in AI-enabled logistics transformation.">
+<meta name="description" content="Jörn Hoppe — Senior logistics and ocean freight executive with 20+ years leading international teams and P&amp;L, now building a second track record in AI-enabled logistics transformation and personally operating a private production-grade AI &amp; infrastructure platform.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c22236'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-weight='800' font-size='36' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <style>
   :root {
-    --bg: #f7f8fa;
-    --bg-alt: #ffffff;
-    --text: #1a2332;
-    --text-muted: #566072;
-    --border: #e2e6ec;
-    --accent: #0e6e6e;
-    --accent-strong: #095656;
-    --accent-soft: #e6f3f2;
-    --chip-bg: #eef1f5;
-    --shadow: 0 1px 3px rgba(20, 30, 45, 0.06), 0 8px 24px rgba(20, 30, 45, 0.04);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #10151d;
-      --bg-alt: #161d27;
-      --text: #e8edf3;
-      --text-muted: #96a3b5;
-      --border: #263141;
-      --accent: #4fd1c5;
-      --accent-strong: #7ee3d8;
-      --accent-soft: #17302f;
-      --chip-bg: #1c2531;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
-    }
-  }
-  :root[data-theme="light"] {
-    --bg: #f7f8fa; --bg-alt: #ffffff; --text: #1a2332; --text-muted: #566072;
-    --border: #e2e6ec; --accent: #0e6e6e; --accent-strong: #095656;
-    --accent-soft: #e6f3f2; --chip-bg: #eef1f5;
-    --shadow: 0 1px 3px rgba(20, 30, 45, 0.06), 0 8px 24px rgba(20, 30, 45, 0.04);
-  }
-  :root[data-theme="dark"] {
-    --bg: #10151d; --bg-alt: #161d27; --text: #e8edf3; --text-muted: #96a3b5;
-    --border: #263141; --accent: #4fd1c5; --accent-strong: #7ee3d8;
-    --accent-soft: #17302f; --chip-bg: #1c2531;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    --bg-top: #3d0f18;
+    --bg-mid: #200a10;
+    --bg-low: #12060a;
+    --bg-floor: #0a0407;
+    --card-bg: rgba(20, 25, 38, 0.72);
+    --card-bg-solid: #141926;
+    --card-border: rgba(255, 255, 255, 0.09);
+    --text: #f4f6fb;
+    --text-muted: #a8b0c4;
+    --accent: #ff5069;
+    --accent-soft: rgba(255, 80, 105, 0.14);
+    --accent-grad: linear-gradient(135deg, #e6394f 0%, #9c1b2c 100%);
+    --chip-bg: rgba(255, 255, 255, 0.05);
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-floor);
+    background-image:
+      radial-gradient(1100px 620px at 50% -8%, var(--bg-top) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-low) 45%, var(--bg-floor) 100%);
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, no-repeat;
   }
   .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
   a { color: var(--accent); }
 
+  /* Brand row */
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .logo-mark {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--accent-grad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 26px;
+    color: #fff;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 10px 26px rgba(198, 34, 54, 0.45), 0 0 46px rgba(198, 34, 54, 0.28);
+  }
+  .brand-name { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
+  .brand-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
   /* Hero */
   header.hero {
-    padding: 72px 0 48px;
-    border-bottom: 1px solid var(--border);
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--card-border);
   }
   .eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     font-size: 12px;
     font-weight: 700;
     color: var(--accent);
@@ -72,15 +87,16 @@
   }
   h1 {
     font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.1;
+    line-height: 1.12;
     margin: 0 0 10px;
     letter-spacing: -0.02em;
+    color: #fff;
   }
   .headline {
     font-size: clamp(1.05rem, 2.4vw, 1.35rem);
     color: var(--text-muted);
     margin: 0 0 22px;
-    max-width: 640px;
+    max-width: 660px;
   }
   .meta-row {
     display: flex;
@@ -94,7 +110,7 @@
     color: var(--text-muted);
     padding: 6px 12px;
     border-radius: 999px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--card-border);
   }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn {
@@ -107,26 +123,27 @@
     font-size: 14px;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
   }
   .btn:hover { transform: translateY(-1px); }
-  .btn-primary { background: var(--accent); color: #ffffff; }
-  .btn-primary:hover { background: var(--accent-strong); }
-  .btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-primary { background: var(--accent-grad); color: #fff; box-shadow: 0 10px 28px rgba(198, 34, 54, 0.4); }
+  .btn-primary:hover { box-shadow: 0 14px 34px rgba(198, 34, 54, 0.55); }
+  .btn-secondary { background: rgba(255, 255, 255, 0.04); color: var(--text); border-color: var(--card-border); }
+  .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
 
-  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section { padding: 56px 0; border-bottom: 1px solid var(--card-border); }
   section:last-of-type { border-bottom: none; }
   h2 {
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    color: var(--accent);
     margin: 0 0 24px;
     font-weight: 700;
   }
   .lede { font-size: 17px; max-width: 720px; color: var(--text); }
 
-  /* Achievements */
+  /* Grid cards */
   .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -134,11 +151,12 @@
   }
   @media (max-width: 760px) { .grid-3 { grid-template-columns: 1fr; } }
   .card {
-    background: var(--bg-alt);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 22px;
     box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
   }
   .card .stat {
     font-size: 26px;
@@ -153,7 +171,7 @@
   .strength h3 {
     font-size: 15px;
     margin: 0 0 12px;
-    color: var(--text);
+    color: #fff;
   }
   .strength ul { margin: 0; padding-left: 18px; color: var(--text-muted); font-size: 14px; }
   .strength li { margin-bottom: 6px; }
@@ -162,7 +180,7 @@
   .job {
     position: relative;
     padding: 0 0 36px 28px;
-    border-left: 2px solid var(--border);
+    border-left: 2px solid var(--card-border);
   }
   .job:last-child { padding-bottom: 0; }
   .job::before {
@@ -173,10 +191,11 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--accent);
-    border: 2px solid var(--bg);
+    background: var(--accent-grad);
+    border: 2px solid var(--bg-low);
+    box-shadow: 0 0 10px rgba(198, 34, 54, 0.6);
   }
-  .job .role { font-size: 17px; font-weight: 700; margin: 0 0 2px; }
+  .job .role { font-size: 17px; font-weight: 700; margin: 0 0 2px; color: #fff; }
   .job .org {
     font-size: 14px;
     color: var(--accent);
@@ -190,43 +209,62 @@
     margin-top: 12px;
     padding: 12px 14px;
     background: var(--accent-soft);
+    border: 1px solid rgba(255, 80, 105, 0.22);
     border-radius: 8px;
     font-size: 13.5px;
     color: var(--text);
   }
-  .impact strong { color: var(--accent-strong); }
+  .impact strong { color: var(--accent); }
 
-  .earlier {
-    margin-top: 8px;
-  }
+  .earlier { margin-top: 8px; }
   .earlier-item {
     padding: 14px 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--card-border);
   }
   .earlier-item:first-child { border-top: none; }
-  .earlier-item .role { font-weight: 700; font-size: 14.5px; }
+  .earlier-item .role { font-weight: 700; font-size: 14.5px; color: #fff; }
   .earlier-item .org { color: var(--text-muted); font-size: 13px; }
   .earlier-item p { margin: 6px 0 0; font-size: 13.5px; color: var(--text-muted); }
 
-  /* AI focus */
+  /* Dot lists */
   .ai-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
   .ai-list li {
     display: flex;
     gap: 12px;
     align-items: flex-start;
     font-size: 15px;
+    color: var(--text);
   }
   .ai-list .dot {
     flex: none;
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--accent-grad);
     margin-top: 8px;
+    box-shadow: 0 0 8px rgba(198, 34, 54, 0.6);
   }
+
+  /* Ecosystem section extras */
+  .ecosystem-note {
+    margin-top: 28px;
+    padding: 20px 22px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+  }
+  .ecosystem-note h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+  .ecosystem-note p { margin: 0; font-size: 14.5px; color: var(--text-muted); }
 
   /* Education / footer */
   .edu-item { margin-bottom: 14px; }
-  .edu-item .role { font-weight: 700; font-size: 14.5px; }
+  .edu-item .role { font-weight: 700; font-size: 14.5px; color: #fff; }
   .edu-item .org { color: var(--text-muted); font-size: 13.5px; }
 
   footer {
@@ -244,6 +282,13 @@
 
 <header class="hero">
   <div class="wrap">
+    <div class="brand-row">
+      <div class="logo-mark">H</div>
+      <div>
+        <div class="brand-name">Jörn Hoppe</div>
+        <div class="brand-tag">Portfolio · Logistics &amp; AI</div>
+      </div>
+    </div>
     <p class="eyebrow">Jörn Hoppe</p>
     <h1>Senior Logistics Executive<br>AI in Logistics &amp; Supply Chain</h1>
     <p class="headline">20+ years leading international ocean freight teams and P&amp;L across Europe, Asia and the Americas — now building a second track record turning AI capabilities into governed, measurable improvements for logistics organizations.</p>
@@ -254,6 +299,7 @@
     </div>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="btn btn-secondary" href="https://www.xing.com/profile/Joern_Hoppe3/portfolio?nwt_nav=profile" target="_blank" rel="noopener">XING Profile</a>
       <a class="btn btn-secondary" href="mailto:Joern_Hoppe@outlook.com">Joern_Hoppe@outlook.com</a>
     </div>
   </div>
@@ -414,10 +460,36 @@
     <h2>AI, Innovation &amp; Entrepreneurial Focus</h2>
     <ul class="ai-list">
       <li><span class="dot"></span>Building a practical AI-in-logistics profile centered on implementation, adoption and measurable business value — not technology hype.</li>
-      <li><span class="dot"></span>Hands-on practitioner: runs a self-hosted AI agent platform and several self-built AI-powered apps in daily use — practical experience with agentic workflows, orchestration and knowledge automation.</li>
       <li><span class="dot"></span>Completed DHL Global Forwarding's full internal AI training curriculum; selected for the AI Pioneer Program (2026).</li>
       <li><span class="dot"></span>Long-term ambition: become an entrepreneurial AI expert for logistics and supply chain organizations, connecting deep industry experience with practical AI solution design.</li>
     </ul>
+  </div>
+</section>
+
+<section id="ecosystem">
+  <div class="wrap">
+    <h2>AI &amp; Ecosystem — Hoppe.home</h2>
+    <p class="lede">Outside of my day job, I design, build and personally operate a private, production-grade AI and infrastructure platform — <strong>Hoppe.home</strong>. It's a real environment in daily use, not a lab or a demo, and it's where I turn my logistics-honed operating discipline into hands-on software and AI practice.</p>
+
+    <div class="grid-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="stat">12+</div>
+        <p>Self-managed servers across Windows and Linux, built out as a genuine enterprise-style environment — domain services, certificate authority, monitoring and automated backups.</p>
+      </div>
+      <div class="card">
+        <div class="stat">10+</div>
+        <p>Custom-built applications running in daily production use — spanning financial and tax tooling, monitoring dashboards, knowledge management and a browser-based game platform.</p>
+      </div>
+      <div class="card">
+        <div class="stat">24/7</div>
+        <p>A resident AI agent operates as a genuine working partner — handling day-to-day development, operations and monitoring continuously, always under my direct oversight.</p>
+      </div>
+    </div>
+
+    <div class="ecosystem-note">
+      <h3>How it's run</h3>
+      <p>The platform is a real working partnership between human oversight and an autonomous AI operator: I set direction, priorities and guardrails; the AI handles day-to-day engineering, infrastructure operations, monitoring and documentation. Every significant change is tracked, reviewed and kept inside clear governance boundaries — the same operating discipline I apply professionally, brought home and applied at a personal scale.</p>
+    </div>
   </div>
 </section>
 
@@ -439,6 +511,7 @@
   <div class="wrap">
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.xing.com/profile/Joern_Hoppe3/portfolio?nwt_nav=profile" target="_blank" rel="noopener">XING</a>
       <a href="mailto:Joern_Hoppe@outlook.com">Email</a>
       <a href="https://github.com/JoernHoppe" target="_blank" rel="noopener">GitHub</a>
     </div>
