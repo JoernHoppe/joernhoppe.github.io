@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jörn Hoppe — Senior Logistics Executive | AI in Logistics &amp; Supply Chain</title>
 <meta name="description" content="Jörn Hoppe — Senior logistics and ocean freight executive with 20+ years leading international teams and P&amp;L, now building a second track record in AI-enabled logistics transformation and personally operating a private production-grade AI &amp; infrastructure platform.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Jörn Hoppe — Senior Logistics Executive | AI in Logistics & Supply Chain">
+<meta property="og:description" content="20+ years leading international ocean freight teams and P&amp;L across Europe, Asia and the Americas — now building a second track record in AI-enabled logistics transformation.">
+<meta property="og:image" content="https://joernhoppe.github.io/assets/jorn-dgf-pixel.jpg">
+<meta property="og:url" content="https://joernhoppe.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://joernhoppe.github.io/assets/jorn-dgf-pixel.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c22236'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-weight='800' font-size='36' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
 <style>
   :root {
@@ -76,6 +83,31 @@
   header.hero {
     padding: 64px 0 48px;
     border-bottom: 1px solid var(--card-border);
+  }
+  .hero-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .hero-text { flex: 1 1 auto; min-width: 0; }
+  .hero-portrait {
+    flex: none;
+    width: 220px;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(198, 34, 54, 0.22);
+    background: var(--accent-grad);
+  }
+  .hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 760px) {
+    .hero-row { flex-direction: column-reverse; gap: 24px; }
+    .hero-portrait { width: 180px; height: 180px; }
   }
   .eyebrow {
     text-transform: uppercase;
@@ -289,18 +321,25 @@
         <div class="brand-tag">Portfolio · Logistics &amp; AI</div>
       </div>
     </div>
-    <p class="eyebrow">Jörn Hoppe</p>
-    <h1>Senior Logistics Executive<br>AI in Logistics &amp; Supply Chain</h1>
-    <p class="headline">20+ years leading international ocean freight teams and P&amp;L across Europe, Asia and the Americas — now building a second track record turning AI capabilities into governed, measurable improvements for logistics organizations.</p>
-    <div class="meta-row">
-      <span class="chip">Bremen, Germany</span>
-      <span class="chip">German citizen · Hong Kong permanent resident</span>
-      <span class="chip">German (native) · English (professional)</span>
-    </div>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">Connect on LinkedIn</a>
-      <a class="btn btn-secondary" href="https://www.xing.com/profile/Joern_Hoppe3/portfolio?nwt_nav=profile" target="_blank" rel="noopener">XING Profile</a>
-      <a class="btn btn-secondary" href="mailto:Joern_Hoppe@outlook.com">Joern_Hoppe@outlook.com</a>
+    <div class="hero-row">
+      <div class="hero-text">
+        <p class="eyebrow">Jörn Hoppe</p>
+        <h1>Senior Logistics Executive<br>AI in Logistics &amp; Supply Chain</h1>
+        <p class="headline">20+ years leading international ocean freight teams and P&amp;L across Europe, Asia and the Americas — now building a second track record turning AI capabilities into governed, measurable improvements for logistics organizations.</p>
+        <div class="meta-row">
+          <span class="chip">Bremen, Germany</span>
+          <span class="chip">German citizen · Hong Kong permanent resident</span>
+          <span class="chip">German (native) · English (professional)</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          <a class="btn btn-secondary" href="https://www.xing.com/profile/Joern_Hoppe3/portfolio?nwt_nav=profile" target="_blank" rel="noopener">XING Profile</a>
+          <a class="btn btn-secondary" href="mailto:Joern_Hoppe@outlook.com">Joern_Hoppe@outlook.com</a>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <img src="assets/jorn-dgf-pixel.jpg" alt="Pixel-art portrait of Jörn Hoppe at his ocean freight allocation management desk, DHL Global Forwarding" width="720" height="720" loading="eager">
+      </div>
     </div>
   </div>
 </header>
