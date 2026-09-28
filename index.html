@@ -1,35 +1,1669 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-portal-shell="none">
 <head>
 <meta charset="UTF-8">
 <link rel="canonical" href="https://hoppe.mywire.org/joern/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jörn Hoppe — AI Systems Builder &amp; Operator | Logistics Executive</title>
-<meta name="description" content="Jörn Hoppe — designs, builds and personally operates a production-grade AI and infrastructure platform, Hoppe.home, alongside a 20+ year career leading international ocean freight P&amp;L and AI-enabled logistics transformation.">
+<title>Jörn Hoppe — AI Systems Builder &amp; Logistics Executive</title>
+<meta name="description" content="Jörn Hoppe — logistics executive, AI systems builder and founder of Hoppe.home.">
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Jörn Hoppe — AI Systems Builder &amp; Operator | Logistics Executive">
-<meta property="og:description" content="Builds and personally operates a production-grade AI and infrastructure platform — Hoppe.home — on top of 20+ years leading international ocean freight teams and P&amp;L.">
+<meta property="og:title" content="Jörn Hoppe — AI Systems Builder &amp; Logistics Executive">
+<meta property="og:description" content="Logistics executive, AI systems builder and founder of Hoppe.home.">
 <meta property="og:image" content="https://hoppe.mywire.org/joern/assets/jorn-dgf-pixel.jpg">
 <meta property="og:url" content="https://hoppe.mywire.org/joern/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hoppe.mywire.org/joern/assets/jorn-dgf-pixel.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c22236'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-weight='800' font-size='36' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<!-- 2026-09-05: joined the Portal design system (Jörn's page).
+     It carried a private palette under private variable names, so it could
+     not follow a theme and could not share a component. Those names are now
+     aliases of the shared tokens; only the identity accent is still declared
+     here. -->
 <style>
+/* Inlined verbatim from the Hoppe.home Portal design system: portal-frame.css + portal-ui.css (GitHub Pages cannot serve /portal/css/). */
+/* ── Hoppe.home Portal — Shared Frame CSS ──────────────────── */
+
+/* ── Cascade layer ─────────────────────────────────────────────────────────
+   Everything below is in the `hh.frame` layer. portal-ui.css is NOT layered,
+   and unlayered normal declarations beat layered ones at ANY specificity, so
+   the precedence is now a stated fact rather than an accident of which file
+   the browser happened to read second:
+
+       hh.frame  (this file)   the shell
+       unlayered (portal-ui)   the components   -- always wins over the frame
+       unlayered (page <style>)                 -- wins by source order, last
+
+   This is why this file no longer needs a single `!important`. Thirteen of
+   them existed to beat page-local copies of the sidebar; those copies were
+   removed on 2026-09-05 and the layer makes sure the frame can never
+   out-specify the component layer again.
+
+   The page tier is deliberately NOT a third layer yet. Making it one would
+   promote every page-local rule above portal-ui.css at any specificity, and
+   34 pages still carry their own `.card`-family rules -- some would silently
+   restyle. That is the next step, after those are swept, not this one. */
+/* Declared here, in the file the browser reads first, so the order is a fact
+   rather than a consequence of which stylesheet happened to load second. */
+/* Three layers, in this order. hh.page is where every page's own <style>
+   block now lives -- see the wrap in each page. Before 2026-09-06 those
+   blocks were UNLAYERED, and an unlayered declaration beats every layer at
+   any specificity: fourteen pages carried `* { margin:0; padding:0 }`, which
+   is specificity ZERO and still stripped the padding off every sidebar row
+   that portal-ui.css had set. That is the ~21px menu Joern kept seeing on
+   some pages and not others -- the difference was simply whether the page
+   had a reset. Layered, the reset loses to `.sidebar .nav-item` on
+   specificity, which is the behaviour everyone assumes CSS already has. */
+@layer hh.frame, hh.components, hh.page;
+
+@layer hh.frame {
+
+/* One template, all pages. Do NOT add page-specific rules here. */
+
+
+:root {
+    --bg:#1c2333; --surface:#212d40; --card:#1e2a3a; --card-hover:#243246;
+    --topbar:#141d2c; --page-grad-start:#1a2438; --page-grad-end:#1c2333;
+    --text:#e8f5ff; --strong:#ffffff; --muted:#a0b8d4;
+    --accent:#4a9eff; --accent-lt:rgba(74,158,255,0.15); --accent-hov:#2e86eb;
+    --border:#2a3c54;
+    --ok:#3fb950; --warn:#f0b429; --err:#f85149;
+    --ok-bg:rgba(63,185,80,0.13); --warn-bg:rgba(240,180,41,0.13); --err-bg:rgba(248,81,73,0.13);
+    --shadow:0 4px 16px rgba(0,0,0,0.38); --shadow-sm:0 1px 4px rgba(0,0,0,.28);
+    --shadow-md:0 8px 24px rgba(0,0,0,.40); --radius:12px;
+}
+[data-theme="light"] {
+    --bg:#b8cce0; --surface:#c8d9e9; --card:#f4f8fc; --card-hover:#e6f0fa;
+    --topbar:#a8bdd4; --page-grad-start:#c4d4e4; --page-grad-end:#b8cce0;
+    --text:#0f1f30; --strong:#000000; --muted:#2a3f54;
+    --accent:#176cc8; --accent-lt:rgba(23,108,200,0.12); --accent-hov:#0e59a7;
+    --border:#b8cfe3;
+    --ok:#1f8f42; --warn:#b37000; --err:#c43831;
+    --ok-bg:rgba(31,143,66,0.12); --warn-bg:rgba(179,112,0,0.12); --err-bg:rgba(196,56,49,0.12);
+    --shadow:0 4px 16px rgba(18,44,80,0.16); --shadow-sm:0 1px 6px rgba(18,44,80,.12);
+    --shadow-md:0 8px 28px rgba(18,44,80,.16);
+}
+[data-theme="horde"] {
+    --bg:#2a1013; --surface:#34161a; --card:#3c1a1f; --card-hover:#4a1f24;
+    --topbar:#2d1216; --page-grad-start:#3c161d; --page-grad-end:#271014;
+    --text:#ffeaea; --strong:#ffffff; --muted:#e2a9a9;
+    --accent:#e24444; --accent-lt:rgba(226,68,68,0.20); --accent-hov:#ff5c5c;
+    --border:#6a2a31;
+    --ok:#7ed957; --warn:#ff9e2c; --err:#ff4b4b;
+    --ok-bg:rgba(126,217,87,0.12); --warn-bg:rgba(255,158,44,0.14); --err-bg:rgba(255,75,75,0.16);
+    --shadow:0 4px 16px rgba(30,8,10,0.42); --shadow-sm:0 1px 6px rgba(30,8,10,.34);
+    --shadow-md:0 10px 28px rgba(30,8,10,.46);
+}
+[data-theme="horde-light"] {
+    --bg:#f5e8e8; --surface:#faf3f3; --card:#fffbfb; --card-hover:#fff0f0;
+    --topbar:#f0e5e5; --page-grad-start:#faf0f0; --page-grad-end:#f5e8e8;
+    --text:#2a0a0a; --strong:#ffffff; --muted:#c24a4a;
+    --accent:#d63030; --accent-lt:rgba(214,48,48,.15); --accent-hov:#b91e1e;
+    --border:#e6bfbf;
+    --ok:#1f8f42; --warn:#b37000; --err:#c43831;
+    --ok-bg:rgba(31,143,66,.12); --warn-bg:rgba(179,112,0,.12); --err-bg:rgba(196,56,49,.12);
+    --shadow:0 4px 16px rgba(120,10,10,.12); --shadow-sm:0 1px 4px rgba(120,10,10,.10);
+    --shadow-md:0 8px 24px rgba(120,10,10,.16);
+}
+[data-theme="fusion"] {
+    --bg:#1d2230; --surface:#222b3d; --card:#202a3a; --card-hover:#28354a;
+    --topbar:#1a2232; --page-grad-start:#1f283a; --page-grad-end:#231724;
+    --text:#dbe6f4; --strong:#ffffff; --muted:#8fa1ba;
+    --accent:#7c59ff; --accent-lt:rgba(124,89,255,.18); --accent-hov:#6847e6;
+    --border:#3b3f66;
+    --ok:#3fb950; --warn:#f0b429; --err:#f85149;
+    --ok-bg:rgba(63,185,80,.13); --warn-bg:rgba(240,180,41,.13); --err-bg:rgba(248,81,73,.13);
+    --shadow:0 4px 16px rgba(20,10,30,.42); --shadow-sm:0 1px 6px rgba(20,10,30,.36);
+    --shadow-md:0 10px 28px rgba(20,10,30,.45);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Segoe UI",-apple-system,Helvetica,Arial,sans-serif;font-size:14px;
+    background:linear-gradient(160deg,var(--page-grad-start) 0%,var(--page-grad-end) 100%) fixed;
+    color:var(--text);min-height:100vh;display:flex;}
+
+/* ── Sidebar ─── */
+/* Tokens, not hex. These four rules hard-coded the August pale-blue panel, so
+   the frame's own fallback looked wrong on four of the five themes whenever
+   portal-ui.css was slow, cached out, or (as happened) not being served at all.
+   portal-ui.css still owns the glass treatment on top. */
+.sidebar{background:var(--surface);border-right:1px solid var(--border);width:292px;
+    height:100vh;min-height:100vh;flex-shrink:0;display:flex;flex-direction:column;
+    position:fixed;left:0;top:0;z-index:3000;box-shadow:2px 0 18px rgba(20,42,68,.12);overflow:hidden;}
+.brand-block{display:flex;align-items:center;gap:12px;padding:11px 12px;margin:12px;
+    border-radius:10px;border:1px solid var(--border);
+    background:linear-gradient(180deg,color-mix(in srgb,var(--card) 92%,transparent),color-mix(in srgb,var(--surface) 92%,transparent));
+    box-shadow:inset 0 1px 0 var(--glass-edge,rgba(255,255,255,.14)),0 8px 20px rgba(0,0,0,.18);}
+.brand-text{line-height:1.1;}
+.brand-name{font-size:20px;font-weight:800;color:var(--strong);}
+.brand-name span{color:var(--accent);}
+.brand-sub{font-size:12px;text-transform:uppercase;letter-spacing:.10em;color:var(--muted);margin-top:4px;}
+.sidebar-nav{flex:1;min-height:0;max-height:100%;overflow-y:auto;overflow-x:hidden;padding:8px 0 16px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.sidebar-nav::-webkit-scrollbar{width:11px}
+.sidebar-nav::-webkit-scrollbar-track{background:transparent}
+.sidebar-nav::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--border) 75%,transparent);border:2px solid transparent;background-clip:padding-box;border-radius:999px}
+.sidebar-nav::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--accent) 60%,var(--border));border:2px solid transparent;background-clip:padding-box}
+.nav-grp-hd{padding:12px 16px 4px;font-size:10px;text-transform:uppercase;letter-spacing:.10em;font-weight:700;color:var(--muted);}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 16px;margin:1px 8px;border-radius:7px;
+    font-size:15px;font-weight:500;color:var(--text);text-decoration:none;border:1px solid transparent;cursor:pointer;
+    transition:background .15s ease,color .15s ease;}
+.nav-item:hover{background:transparent;color:var(--strong);}
+.nav-item.active{background:var(--accent-lt);color:var(--strong);border-left:3px solid var(--accent);padding-left:13px;font-weight:700;}
+.nav-item.sub-item{padding-left:32px;font-size:14px;}
+.nav-main{justify-content:space-between;font-weight:700;color:var(--text);}
+.menu-section.expanded > .nav-main{color:var(--strong);}
+.menu-section > .nav-main:hover{color:var(--strong);}
+.nav-main .nav-main-left{display:inline-flex;align-items:center;gap:9px;}
+.nav-chevron{display:inline-block;transition:transform .2s ease;color:var(--muted);font-size:12px;}
+.menu-section.expanded > .nav-main:not(.nav-direct) .nav-chevron{transform:rotate(90deg);color:var(--strong);}
+.menu-submenu{display:none;}
+.menu-section.expanded > .menu-submenu{display:block;}
+.nav-icon{font-size:18px;width:22px;text-align:center;flex-shrink:0;}
+
+/* The canonical sidebar lock lived here: thirteen !important rules whose only
+   job was to beat page-local copies of the sidebar. 2026-09-05 removed the
+   copies instead -- 184 shell rules across 11 pages -- so the lock has nothing
+   left to fight, and portal-ui.css now owns how the sidebar looks.
+
+   It had to go for a second reason. With cascade layers, an !important
+   declaration in an EARLIER layer beats one in a later layer. Leaving these
+   here would have inverted the whole design system the moment @layer was
+   introduced: the frame would have won every contested sidebar rule against
+   portal-ui.css, silently.
+
+   The .hoppe-h-icon rules went with it -- that class has no users left; the
+   mark is the brick-built <svg><use href="#pi-hmark"> now. */
+
+.sidebar-footer{padding:12px 16px;margin-top:auto;border-top:1px solid var(--border);}
+.env-badge{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;margin:4px 8px;box-shadow:0 0 6px var(--accent);transition:background .3s;}
+.theme-btn{margin-top:10px;width:100%;padding:7px 12px;background:transparent;border:1px solid var(--border);
+    border-radius:7px;color:var(--muted);font-size:12px;font-family:inherit;cursor:pointer;text-align:left;
+    transition:border-color .15s,color .15s;}
+.theme-btn:hover{border-color:var(--accent);color:var(--strong);}
+
+/* ── Main ─── */
+.main{margin-left:292px;flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.page-header{padding:56px 36px 0;}
+.page-title{font-size:28px;font-weight:800;color:var(--strong);}
+.page-subtitle{margin-top:6px;font-size:14px;color:var(--muted);}
+.tile-actions{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.shell-tools:not(.topbar){position:fixed;top:10px;right:16px;z-index:200;display:flex;align-items:center;justify-content:flex-end;gap:8px;}
+.shell-tools:not(.topbar) .back-btn{order:1;}
+.shell-tools:not(.topbar) .user-menu{order:2;}
+.topbar.shell-tools{position:static;top:auto;right:auto;z-index:auto;}
+.back-btn{padding:7px 12px;}
+.user-menu{position:relative;}
+.user-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;background:var(--surface);
+    color:var(--text);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;box-shadow:var(--shadow-sm);white-space:nowrap;}
+.user-chip:hover{border-color:var(--accent);background:var(--accent-lt);color:var(--strong);}
+.menu-panel{display:none;position:absolute;right:0;top:calc(100% + 6px);width:240px;background:var(--card);
+    border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-md);padding:8px;z-index:210;}
+.menu-section-divider{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.10em;color:var(--muted);padding:10px 8px 4px;border-top:1px solid var(--border);margin-top:4px;}
+.menu-section-divider:first-of-type{border-top:none;margin-top:0;padding-top:4px;}
+.menu-panel.open{display:block;}
+.menu-user{font-size:12px;color:var(--strong);padding:8px 8px 10px;border-bottom:1px solid var(--border);margin-bottom:6px;}
+.menu-item{display:block;width:100%;text-align:left;background:transparent;color:var(--text);border:1px solid transparent;
+    border-radius:7px;padding:8px;font-size:12px;cursor:pointer;text-decoration:none;}
+.menu-item:hover{background:var(--accent-lt);border-color:var(--border);}
+.content{padding:24px 36px 108px;flex:1;}
+
+/* ── Shared utilities ──────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;background:var(--accent);color:#fff;
+  border-radius:7px;text-decoration:none;font-size:13px;font-weight:600;font-family:inherit;border:0;cursor:pointer}
+.btn:hover{background:var(--accent-hov)}
+.btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn.secondary:hover{border-color:var(--accent);background:var(--accent-lt);color:var(--strong)}
+.banner{margin:0 0 14px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;
+  background:var(--surface);font-size:12px;line-height:1.5}
+.banner.ok{border-color:rgba(63,185,80,.35);color:var(--ok)}
+.banner.warn{border-color:rgba(240,180,41,.4);color:var(--warn)}
+.banner.err{border-color:rgba(248,81,73,.4);color:var(--err)}
+.hamburger{display:none;position:fixed;top:12px;left:12px;z-index:3010;background:var(--topbar);
+    border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer;font-size:18px;color:var(--text);}
+.sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:2990;}
+@media(max-width:780px){
+    .sidebar{transform:translateX(-100%);transition:transform .25s ease;}
+    .sidebar.open{transform:translateX(0);}.sidebar-backdrop.open{display:block;}
+    .hamburger{display:flex;align-items:center;}.main{margin-left:0;}
+    .page-header,.content,footer{padding-left:20px;padding-right:20px;}
+    footer{position:static;left:auto;right:auto;bottom:auto;margin-top:20px;}
+    .content{padding-bottom:24px;}
+}
+/* — 640px: large phones / small tablets portrait — */
+@media(max-width:640px){
+    .page-header{padding-left:16px;padding-right:16px;}
+    .page-title{font-size:23px;}
+    .content{padding-left:16px;padding-right:16px;}
+    .tile-actions{flex-wrap:wrap;gap:6px;}
+}
+/* — 480px: small phones — */
+@media(max-width:480px){
+    .page-header{padding-top:48px;padding-left:12px;padding-right:12px;}
+    .page-title{font-size:19px;}
+    .page-subtitle{font-size:12px;}
+    .content{padding-left:12px;padding-right:12px;padding-bottom:16px;}
+    .tile-actions{gap:4px;}
+    .btn{padding:7px 10px;font-size:12px;}
+    footer{padding:5px 12px;font-size:10px;}
+}
+/* — 1400px: wide desktop — */
+@media(min-width:1400px){
+    .sidebar{width:308px;}
+    .main{margin-left:308px;}
+    footer{left:308px;}
+    .page-header{padding-left:52px;padding-right:52px;}
+    .content{padding-left:52px;padding-right:52px;}
+}
+/* — 1800px: ultrawide — */
+@media(min-width:1800px){
+    .page-header{padding-left:80px;padding-right:80px;}
+    .content{padding-left:80px;padding-right:80px;}
+}
+
+footer{position:fixed;bottom:0;left:292px;right:0;padding:6px 20px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);background:color-mix(in srgb,var(--topbar) 92%,transparent);backdrop-filter:blur(4px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;z-index:55;}
+.footer-brand{display:inline-flex;align-items:center;gap:8px;}
+/* Pages that declare data-portal-shell="none" (the front door, the public
+   /home//joern//joanna/ pages, download pages, standalone widgets — the same
+   set stale-code-monitor.sh's is_standalone_page() exempts from shell checks)
+   have no sidebar to reserve 292px for and are plain scrolling documents, not
+   an app shell with a fixed status bar. The bare footer{} rule above still
+   matched their <footer> element regardless — an element selector has no
+   idea which page it landed on — so it pinned itself to the viewport bottom
+   over whatever content was scrolled underneath, with the reserved 292px gap
+   on the left (meant for a sidebar that was never rendered) showing the page
+   behind straight through. Found 2026-09-18 on /home/, still visible after
+   the footer's own content was fixed, because the actual bug was position,
+   not content. Every standalone page defines its OWN local footer{...} for
+   padding/spacing (see e.g. home/index.html's footer.site-footer) but none
+   of them reset position, because nothing told them they needed to. */
+html[data-portal-shell="none"] footer{
+  position:static;left:auto;right:auto;bottom:auto;
+  backdrop-filter:none;
+}
+
+/* ── Network section tab bar ──────────────────────────────────────────
+   2026-08-16: was defined inline in network/index.html only (and twice
+   in that one file, so the second block silently won). The four Network
+   sub-pages carried no tab bar at all, which meant clicking a tab
+   stranded you with no way across the section except the sidebar. Moved
+   here so all five Network pages share one definition and the section
+   reads as a single tabbed surface. */
+.network-submenu { display: flex; gap: 4px; margin: 0 0 18px; flex-wrap: wrap; }
+.network-submenu .sub-link {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background .12s, color .12s;
+}
+.network-submenu .sub-link:hover { background: var(--accent-lt); color: var(--strong); }
+.network-submenu .sub-link.active {
+    background: var(--accent-lt);
+    border-color: var(--accent);
+    color: var(--strong);
+}
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Hoppe.home Portal — Shared UI Layer  ("3D Pixel Glass")
+   ═══════════════════════════════════════════════════════════════════════════
+
+   WHAT THIS FILE IS
+   -----------------
+   `portal-frame.css` is the FRAME: sidebar, main column, page header, topbar.
+   This file is the CONTENT VOCABULARY that goes inside it — cards, KPI tiles,
+   tables, pills, chips, banners, buttons, toolbars, empty states.
+
+   It exists because that vocabulary had been hand-copied into every page.
+   Measured 2026-09-05 across the 52 pages that load the frame:
+
+       .btn defined 126 times   .kpi 92 times   .table 54 times
+       .card 53 times           .status-pill 58 times   .chip 41 times
+
+   That is `feedback_copied_ui_fragments_drift` at Portal scale — the same
+   failure that gave the CFO Tools eight different sidebars. A component
+   defined 53 times is 53 components, and they drift the moment one is
+   touched. Define it once, here; pages describe WHAT they show, not how a
+   card looks.
+
+   LOAD ORDER (matters)
+   --------------------
+       portal-frame.css   → the frame
+       portal-ui.css      → this file, the components      ← always second
+       page <style>       → genuinely page-specific rules only
+
+   A page's own <style> still wins, so adding this file cannot break a page.
+   That is deliberate: it lets the layer land safely first and the local
+   copies be removed page by page afterwards.
+
+   THE LOOK, AND WHY
+   -----------------
+   Two things Jörn asked to converge (2026-09-05), taken from the PM Tool's
+   surface and from our own brand:
+
+   1. **Apple glass.** Glass is not transparency. It is three things at once —
+      a BLUR of what lies behind, a LIGHT EDGE along the top where the light
+      breaks, and a SOFT SHADOW beneath so the pane reads as floating. Drop
+      any one and you get a semi-transparent box, not glass. The blur also
+      needs something behind it to show: hence `body::before/::after`, the
+      ambient wash. On a flat colour every blur is wasted work.
+
+   2. **3D Pixel.** The house's own visual language (branding-hub, LEGO/voxel
+      isometric). Here it is a restrained accent, not decoration: the stud row
+      on a section rule, the brick edge on a KPI tile, the isometric corner on
+      a hero. Enough that the Portal reads as the same house as the wallpapers
+      and the HoppeOS login — not so much that a dashboard becomes a toy.
+
+   READABILITY BEATS EFFECT. Surfaces carrying numbers are markedly more
+   opaque than decorative ones, and table bodies are opaque outright. A
+   dashboard you have to squint at is a worse dashboard, however pretty.
+
+   FIVE THEMES, NOT TWO. Everything below derives from the frame's existing
+   tokens (--card/--surface/--border/--accent) with color-mix(), so dark,
+   light, horde, horde-light and fusion all work without a per-theme block.
+   Only the ambient wash and a few edges are tuned per theme.
+
+   ESCAPE HATCHES
+       <html data-glass="off">              opaque surfaces, everything else kept
+       @supports not (backdrop-filter)      same, automatically
+       prefers-reduced-transparency         same, automatically
+       prefers-reduced-motion               no lift/slide transitions
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Cascade layer ─────────────────────────────────────────────────────────
+   Everything below is in `hh.components`, declared after `hh.frame`. Page
+   styles stay UNLAYERED, and unlayered normal declarations beat every layer at
+   ANY specificity, so the contract this file has claimed in prose since it was
+   written is now enforced by the cascade:
+
+       hh.frame        the shell
+       hh.components   this file          — always beats the frame
+       (unlayered)     a page's <style>   — always beats both
+
+   No page needed editing to get that: leaving them unlayered IS the top layer.
+
+   What had to happen first, on 2026-09-05, in this order:
+     - 565 duplicated component rules removed from 52 pages
+     - 184 + 25 + 9 duplicated SHELL rules removed, until zero page that loads
+       the sidebar carries any of its CSS
+     - the frame's thirteen !important declarations deleted, then three more
+       here that were propping the sidebar up against those page copies
+
+   The last step matters: with layers, an !important in an EARLIER layer beats
+   one in a later layer. Had the frame kept its lock, introducing this would
+   have silently inverted the whole design system in the frame's favour.
+
+   MEASURED BEFORE DOING IT, not assumed. Page rules that previously lost to a
+   more specific rule here now win. A first, blunt check said 149 such rules; it
+   was matching `.muted` against `.status-pill.muted` and `.card` against
+   `[data-glass="off"] .card`, which never style the same element. Requiring
+   that this file's selector be the page's selector plus left-hand context gives
+   the real number: 17, across 10 pages, and every one of them is a page
+   deliberately styling its own `a`, `h2` or `.tab.active`. That is the contract
+   working, not a regression. */
+@layer hh.components {
+
+
+/* ── Glass tokens ──────────────────────────────────────────────────────────
+   Derived from the theme, not hard-coded, so a new theme inherits the glass.
+   Opacity is a readability dial: `pane` for decoration, `solid` for content
+   with numbers in it. */
+:root {
+    --glass-blur: 18px;
+    --glass-blur-soft: 10px;
+    --glass-blur-chrome: 24px;
+    --glass-sat: 155%;
+
+    /* Translucency, mixed from the theme's own card colour. */
+    --glass-pane:  color-mix(in srgb, var(--card) 72%, transparent);
+    --glass-solid: color-mix(in srgb, var(--card) 90%, transparent);
+    --glass-sunk:  color-mix(in srgb, var(--surface) 66%, transparent);
+
+    /* The light edge. A single bright hairline along the top — the actual
+       "light on the pane". Without it a blurred box still looks like a box. */
+    --glass-edge: rgba(255,255,255,.16);
+    --glass-edge-strong: rgba(255,255,255,.24);
+    --glass-hair: color-mix(in srgb, var(--border) 82%, transparent);
+
+    --glass-lift: 0 12px 38px rgba(0,0,0,.38), 0 2px 6px rgba(0,0,0,.24);
+    --glass-lift-hi: 0 22px 60px rgba(0,0,0,.48);
+
+    /* The ambient wash behind the glass. */
+    --amb-1: var(--accent);
+    --amb-2: var(--accent);
+    --amb-opacity: .28;
+
+    /* 3D Pixel: one brick unit, and the stud colour. */
+    --brick: 6px;
+    --brick-face: color-mix(in srgb, var(--accent) 78%, var(--strong));
+    --brick-side: color-mix(in srgb, var(--accent) 55%, #000);
+    --brick-top:  color-mix(in srgb, var(--accent) 40%, var(--strong));
+}
+
+/* Light themes: the edge must be a dark hairline, not a white one — a white
+   highlight on a white pane is invisible, and the pane loses its shape. */
+[data-theme="light"], [data-theme="horde-light"] {
+    --glass-pane:  color-mix(in srgb, var(--card) 62%, transparent);
+    --glass-solid: color-mix(in srgb, var(--card) 88%, transparent);
+    --glass-sunk:  color-mix(in srgb, var(--surface) 60%, transparent);
+    --glass-edge: rgba(255,255,255,.72);
+    --glass-edge-strong: rgba(255,255,255,.92);
+    --glass-lift: 0 8px 28px rgba(18,44,80,.14), 0 1px 2px rgba(18,44,80,.08);
+    --glass-lift-hi: 0 16px 44px rgba(18,44,80,.20);
+    --amb-opacity: .26;
+}
+[data-theme="horde"], [data-theme="horde-light"] { --amb-2: var(--warn); }
+[data-theme="fusion"] { --amb-2: #ff6a8d; --amb-opacity: .24; }
+[data-theme="light"]  { --amb-2: #6fbeff; }
+
+
+/* ── A note for standalone pages ───────────────────────────────────────────
+   portal-frame.css sets `body { display: flex }`, because the Portal proper is
+   a fixed sidebar beside a main column. A page WITHOUT a sidebar — the front
+   door, the public pages, a download page — must set `body { display: block }`
+   (or grid, as the error pages do for centring) in its own <style>, or every
+   top-level block becomes a flex item in a row.
+
+   This is not fixed here on purpose. The obvious shared fix,
+   `body:not(:has(#sidebar-fragment)) { display: block }`, depends on `:has()`,
+   and a browser without it would silently get the broken layout instead of a
+   missing nicety. An explicit line per standalone page is deterministic.
+   It is step 1 of the Wiki's "Add a Portal page" SOP. */
+
+/* ── If color-mix() is missing ─────────────────────────────────────────────
+   Nearly every surface in this layer is derived with color-mix(), which is how
+   five themes are supported without five blocks. If a browser does not know
+   it, EVERY one of those declarations is invalid at computed-value time and
+   the panes fall back to transparent — text on the wallpaper, unreadable.
+
+   That is the one failure worth insuring against, so it is insured against
+   once, at the tokens, rather than by duplicating several hundred rules. The
+   result is the Portal without glass, which is exactly what `data-glass="off"`
+   already produces and is perfectly usable.
+
+   Support: Chrome 111+, Firefox 113+, Safari 16.2+ (all 2023). No browser in
+   this house is older, so this block should never run — which is precisely why
+   it is four lines and not a parallel stylesheet. */
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+    :root {
+        --glass-pane: var(--card); --glass-solid: var(--card); --glass-sunk: var(--surface);
+        --glass-hair: var(--border);
+        --brick-face: var(--accent); --brick-side: var(--accent); --brick-top: var(--strong);
+    }
+    .card, .kpi, .hero, .panel, .glass, .menu-panel {
+        -webkit-backdrop-filter: none; backdrop-filter: none;
+    }
+    .sidebar { background: var(--surface); }
+    .btn { background: var(--accent); }
+    body::before, body::after { display: none; }
+}
+
+/* ── The ground behind the glass ───────────────────────────────────────────
+   Pseudo-elements on <body>, so all 52 framed pages get this with zero markup
+   change. Fixed and pointer-transparent; it must never intercept a click. */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: -2;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: var(--amb-opacity);
+}
+body::before {
+    width: 62vw; height: 62vw; max-width: 1100px; max-height: 1100px;
+    top: -22vw; left: -14vw;
+    background: radial-gradient(circle at 42% 42%, var(--amb-1), transparent 66%);
+}
+body::after {
+    width: 66vw; height: 66vw; max-width: 1200px; max-height: 1200px;
+    right: -20vw; bottom: -26vw;
+    background: radial-gradient(circle at 55% 45%, var(--amb-2), transparent 64%);
+}
+
+/* The glass surface itself. One rule, one place — every pane below points here
+   rather than repeating the blur/edge/shadow triplet. */
+.card, .kpi, .hero, .panel, .glass,
+.menu-panel, .table-wrap.is-pane {
+    background-color: var(--glass-pane);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    border: 1px solid var(--glass-hair);
+    /* The light edge is an INSET hairline, not a background gradient: it
+       survives a page overriding `background`, follows the border radius, and
+       reads crisper. That single line is what separates glass from a
+       semi-transparent box. */
+    box-shadow: inset 0 1px 0 var(--glass-edge), var(--glass-lift);
+}
+
+/* Fallbacks. No effect beats grey mush. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .card, .kpi, .hero, .panel, .glass, .menu-panel, .table-wrap.is-pane { background-color: var(--card); }
+}
+@media (prefers-reduced-transparency: reduce) {
+    .card, .kpi, .hero, .panel, .glass, .menu-panel, .table-wrap.is-pane {
+        background-color: var(--card);
+        -webkit-backdrop-filter: none; backdrop-filter: none;
+    }
+    body::before, body::after { display: none; }
+}
+[data-glass="off"] .card, [data-glass="off"] .kpi, [data-glass="off"] .hero,
+[data-glass="off"] .panel, [data-glass="off"] .glass, [data-glass="off"] .menu-panel {
+    background-color: var(--card);
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+[data-glass="off"] body::before, [data-glass="off"] body::after { display: none; }
+
+
+/* ── Accessibility corrections ─────────────────────────────────────────────
+   Found 2026-09-05 by portal/tests/contrast-audit.html, which measures the
+   REAL rendered colours — compositing every translucent glass layer over what
+   is behind it — against WCAG 2.1 AA, in all five themes. Twenty-one failures,
+   all of them things a person actually reads.
+
+   1. LINKS IN CONTENT WERE THE BROWSER DEFAULT. Nothing in the Portal styled
+      an <a> inside a card, so every link rendered #0000EE — 1.54:1 on a dark
+      card. Unreadable, on every dark theme, everywhere.
+   2. PRIMARY BUTTONS FAILED IN EVERY THEME. White on the raw accent is 2.75:1
+      on blue, 4.08 on horde red, 4.44 on fusion. The button background is now
+      the accent deepened toward black, which passes everywhere and reads
+      better besides.
+   3. STATUS TEXT ON ITS OWN TINT sat between 3.3 and 4.4. Pushing the status
+      colour toward the theme's own extreme (--strong is white on dark themes
+      and black on light ones) fixes both directions with one expression.
+   4. TWO FRAME TOKENS ARE WRONG for horde-light, corrected below. */
+
+/* A link in content. Derived from the accent so it stays on-brand, pushed
+   toward the theme's extreme so it clears 4.5:1 in both directions. */
+.content a:not(.btn):not(.chip):not(.nav-item):not(.tab),
+.card a:not(.btn):not(.chip),
+.banner a, .hero a {
+    color: color-mix(in srgb, var(--accent) 62%, var(--strong));
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+}
+.content a:not(.btn):not(.chip):not(.nav-item):not(.tab):hover,
+.card a:not(.btn):not(.chip):hover { color: var(--strong); }
+
+/* horde-light declared --strong:#ffffff — white "strong" text on a near-white
+   page. Every card heading, KPI value and hero title on that theme measured
+   1.03:1: invisible. --muted:#c24a4a was also just under AA on the same
+   ground. Corrected here rather than in portal-frame.css so the frame keeps
+   its cache-buster and 70 pages do not re-fetch it; the frame should be fixed
+   at source next time it is versioned. */
+[data-theme="horde-light"] {
+    --strong: #1c0606;
+    --muted: #8f2f2f;
+}
+
+/* ── Document structure ────────────────────────────────────────────────────
+   Added 2026-09-05. The Portal had NO landmarks: <main> 0, <header> 0, <h1> 0
+   across every page measured. A screen-reader user could not skip to the
+   content and there was no heading to navigate by — a hole the contrast audit
+   could never have found, because it measures colour and says nothing about
+   structure. The page shell is now
+   <header class="page-header"> · <h1 class="page-title"> · <main class="content">
+   and stale-code-monitor.sh fails the deploy if a page loses them. */
+
+/* An <h1> carries a browser margin that a <div> did not. */
+h1.page-title { margin: 0; }
+
+/* Skip link: invisible until focused, then a real control. It is the first
+   thing in the tab order on every framed page. */
+.skip-to-main {
+    position: absolute; left: 12px; top: -60px; z-index: 4000;
+    padding: 10px 16px; border-radius: 10px;
+    background: var(--card); color: var(--strong);
+    border: 1px solid var(--accent);
+    font-size: 13px; font-weight: 700; text-decoration: none;
+    box-shadow: var(--glass-lift);
+    transition: top .16s ease;
+}
+.skip-to-main:focus { top: 12px; }
+
+/* For a heading a page needs semantically but not visually — the login screen
+   has its brand mark, not a heading, and that is the right design; it still
+   owes assistive technology an <h1>. Clip rather than display:none, which
+   would remove it from the accessibility tree as well. */
+.sr-only {
+    position: absolute !important; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ── Card ──────────────────────────────────────────────────────────────────
+   The workhorse. Everything that is "a thing on a dashboard" is a .card. */
+.card {
+    border-radius: 14px;
+    padding: 15px 16px;
+    /* A grid, not a block. Portal cards are stacks of blocks -- a title, a
+       table, a note -- and `gap` spaces them without every child needing its
+       own margin. Several pages had already discovered this and written
+       `display:grid;gap:10px` into their own copy; the layer adopts it rather
+       than flattening those pages when their copy was removed. */
+    display: grid;
+    gap: 11px;
+    align-content: start;
+    transition: box-shadow .16s ease, transform .16s ease, border-color .16s ease;
+}
+.card h2, .card h3, .card .card-title, .card-head h3, .card-title {
+    margin: 0;
+    font-size: 15px; font-weight: 700; color: var(--strong);
+    letter-spacing: .01em;
+    /* A card title very often carries something on its right -- a count, a
+       timestamp, a filter. Flex by default so it does, and identical to a
+       plain heading when it does not. */
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; flex-wrap: wrap;
+}
+.card .card-note, .card .subtitle, .card-note, .card-sub {
+    margin: -4px 0 0;
+    font-size: 12.5px; line-height: 1.55; color: var(--muted);
+}
+/* Opt back out, for a card that really is one flowing block of prose. */
+.card.is-prose { display: flow-root; }
+.card.is-prose h2, .card.is-prose h3 { margin: 0 0 10px; }
+.card.is-interactive:hover { box-shadow: var(--glass-lift-hi); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.card.is-flush { padding: 0; gap: 0; overflow: hidden; }
+/* A row of studs along the top edge — the 3D Pixel signature at card scale.
+   Used on the front door (login, signed-out, the error pages), where there is
+   no page title to carry the brick and the page has to say "Hoppe.home" on its
+   own. */
+.card.is-pixel-top { position: relative; }
+.card.is-pixel-top::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
+    border-radius: 14px 14px 0 0;
+    background-image: radial-gradient(circle at 3px 3px,
+        color-mix(in srgb, var(--accent) 85%, transparent) 1.8px, transparent 2px);
+    background-size: var(--brick) 5px;
+    opacity: .85;
+}   /* head and body meet; the gap would be a seam */
+.card.is-accent { border-left: 3px solid var(--accent); }
+.card.is-ok   { border-left: 3px solid var(--ok); }
+.card.is-warn { border-left: 3px solid var(--warn); }
+.card.is-err  { border-left: 3px solid var(--err); }
+
+/* A card head, for cards whose body scrolls or is flush. */
+.card-head {
+    display: flex; align-items: center; gap: 9px;
+    padding: 11px 14px;
+    background: linear-gradient(to bottom, var(--glass-edge-strong), transparent);
+    border-bottom: 1px solid var(--glass-hair);
+    border-radius: 14px 14px 0 0;
+}
+.card-head .card-title { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: 700; color: var(--strong);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-head .card-icon { font-size: 15px; flex-shrink: 0; }
+.card-body { padding: 14px; }
+
+/* Card grids — the layout half of "nice overviews". */
+.card-grid  { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.card-grid.is-wide  { grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+.card-grid.is-tight { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+
+
+/* ── Container queries ─────────────────────────────────────────────────────
+   A component library's layout should answer to the space it is IN, not to
+   the size of the window. A card in a 320px sidebar column and the same card
+   spanning a 1400px dashboard are the same width to a media query and
+   obviously different to a reader.
+
+   So `.card` is a size container, and the things inside it respond to IT.
+   Everything below is additive: a browser without @container simply keeps the
+   wide layout, which is what every page had yesterday. */
+/* SCOPED TO THE FRAMED SHELL ON PURPOSE -- 2026-09-05.
+   `container-type: inline-size` also applies `contain: inline-size`, which
+   means the element's own contents STOP contributing to its intrinsic width.
+   Inside `.content` that is harmless: a card there is a block in a column and
+   stretches to the width it is given. In a shrink-to-fit context -- a flex
+   item, a float, `position:absolute`, an inline-block -- the same rule
+   collapses the card to nothing, with the content hanging out beside it.
+
+   That is not hypothetical. `signed-out.html` centres its card with
+   `body{display:flex}` and set no width; on the live Portal it rendered as a
+   35px strip with the whole page to the right of it. The four `errors/*.html`
+   pages use the identical layout and escaped only because each of them
+   happens to set `width:min(760px,100%)`.
+
+   The container queries below only serve dashboard furniture -- `.facts`,
+   `.card-head`, `.kpi-grid`, `.toolbar`, `.filters`, `.table.is-compact` --
+   and every card containing any of it lives inside `.content` (measured: zero
+   framed pages put a `.card` before their `.content` element). So scoping
+   costs nothing and takes the landmine out of every standalone page. */
+.content .card { container-type: inline-size; container-name: hh-card; }
+
+@container hh-card (max-width: 400px) {
+    /* A two-column fact list at 380px is two cramped columns. */
+    .facts { grid-template-columns: 1fr; gap: 2px 0; }
+    .facts dt, .facts .k { margin-top: 6px; }
+    /* A card head with a title and a right-hand action stacks instead of
+       squeezing the title to three characters and an ellipsis. */
+    .card-head { flex-wrap: wrap; row-gap: 4px; }
+    .kpi-grid { grid-template-columns: 1fr; }
+    .toolbar, .filters { row-gap: 6px; }
+    .table.is-compact th, .table.is-compact td { padding: 5px 7px; }
+}
+@container hh-card (max-width: 260px) {
+    .kpi .value, .kpi .kpi-value { font-size: 20px; }
+    .card-head .card-title { white-space: normal; }
+}
+
+/* ── KPI tile ──────────────────────────────────────────────────────────────
+   Numbers first. More opaque than a card and less blurred, because a figure
+   read at a glance must not fight the wallpaper behind it. The left edge is
+   the 3D Pixel brick, stacked in the accent. */
+.kpi-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.kpi-grid.is-tight { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 10px; }
+.kpi-grid.is-wide  { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.kpi {
+    position: relative;
+    border-radius: 12px;
+    padding: 13px 14px 13px 18px;
+    background-color: var(--glass-solid);
+    -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+    backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+    overflow: hidden;
+}
+/* The brick edge: three stacked studs in the accent, isometrically lit. */
+.kpi::before {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background:
+        linear-gradient(180deg,
+            var(--brick-face) 0 33.33%,
+            var(--brick-top)  33.33% 34.5%,
+            var(--brick-face) 34.5% 66.66%,
+            var(--brick-top)  66.66% 67.8%,
+            var(--brick-face) 67.8% 100%);
+    box-shadow: 1px 0 0 var(--brick-side);
+}
+.kpi.is-ok::before   { --brick-face: var(--ok);   --brick-side: color-mix(in srgb, var(--ok) 55%, #000); }
+.kpi.is-warn::before { --brick-face: var(--warn); --brick-side: color-mix(in srgb, var(--warn) 55%, #000); }
+.kpi.is-err::before  { --brick-face: var(--err);  --brick-side: color-mix(in srgb, var(--err) 55%, #000); }
+
+.kpi .label, .kpi .kpi-label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--muted);
+}
+.kpi .value, .kpi .kpi-value {
+    margin-top: 3px;
+    font-size: 25px; font-weight: 800; line-height: 1.15;
+    color: var(--strong);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -.01em;
+}
+.kpi .value.is-sm { font-size: 20px; }
+.kpi .meta, .kpi .kpi-meta { margin-top: 4px; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+.kpi .meta.is-ok { color: var(--ok); } .kpi .meta.is-warn { color: var(--warn); } .kpi .meta.is-err { color: var(--err); }
+
+
+/* ── Tables ────────────────────────────────────────────────────────────────
+   The one place transparency is refused outright. A table body is where
+   people read model numbers, IPs and amounts; the header can float, the rows
+   cannot. Sticky header, tabular figures, and a horizontal scroll container
+   so a wide table scrolls inside itself and never widens the page. */
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+.table-wrap.is-pane { border-radius: 12px; }
+.table-wrap::-webkit-scrollbar { height: 10px; }
+.table-wrap::-webkit-scrollbar-track { background: transparent; }
+.table-wrap::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--border) 80%, transparent);
+    border: 2px solid transparent; background-clip: padding-box; border-radius: 999px;
+}
+
+.table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.table th {
+    position: sticky; top: 0; z-index: 2;
+    text-align: left; padding: 9px 11px;
+    font-size: 10.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: inset 0 -1px 0 var(--border);
+}
+.table td {
+    padding: 9px 11px;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 62%, transparent);
+    color: var(--text); vertical-align: top;
+}
+.table tbody tr { transition: background .12s ease; }
+.table tbody tr:hover { background: var(--accent-lt); }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table .num, .table td.num, .table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.table .nowrap { white-space: nowrap; }
+.table caption { caption-side: bottom; padding: 8px 2px 0; font-size: 11.5px; color: var(--muted); text-align: left; }
+/* Zebra is opt-in — on a glass ground it is usually noise, but long log-style
+   tables genuinely need it. */
+.table.is-zebra tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface) 42%, transparent); }
+.table.is-zebra tbody tr:nth-child(even):hover { background: var(--accent-lt); }
+.table.is-compact th, .table.is-compact td { padding: 6px 9px; font-size: 12px; }
+
+
+/* ── Status pills, chips, badges ───────────────────────────────────────────
+   .status-pill = a STATE (ok/warn/bad/muted).  .chip = a LABEL or filter.
+   Kept distinct on purpose: pages had been using one for the other, which is
+   how a neutral tag ends up looking like an alert. */
+.status-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+    border: 1px solid var(--ok); background: var(--ok-bg);
+    color: color-mix(in srgb, var(--ok) 76%, var(--strong));
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.status-pill.warn  { border-color: var(--warn); background: var(--warn-bg); color: color-mix(in srgb, var(--warn) 76%, var(--strong)); }
+.status-pill.bad,
+.status-pill.err   { border-color: var(--err);  background: var(--err-bg);  color: color-mix(in srgb, var(--err) 74%, var(--strong)); }
+.status-pill.info  { border-color: var(--accent); background: var(--accent-lt); color: var(--accent); }
+.status-pill.muted { border-color: var(--border); background: color-mix(in srgb, var(--surface) 70%, transparent); color: color-mix(in srgb, var(--muted) 80%, var(--strong)); }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+    background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 22%, transparent); }
+.status-dot.warn { background: var(--warn); box-shadow: 0 0 0 3px color-mix(in srgb, var(--warn) 22%, transparent); }
+.status-dot.bad, .status-dot.err { background: var(--err); box-shadow: 0 0 0 3px color-mix(in srgb, var(--err) 22%, transparent); }
+.status-dot.muted { background: var(--muted); box-shadow: none; }
+
+.chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 9px; border-radius: 8px;
+    font-size: 11.5px; font-weight: 600; white-space: nowrap;
+    color: var(--text);
+    background: color-mix(in srgb, var(--surface) 68%, transparent);
+    border: 1px solid var(--glass-hair);
+}
+.chip.is-accent { background: var(--accent-lt); border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--accent); }
+button.chip, a.chip { cursor: pointer; transition: background .12s ease, border-color .12s ease; }
+button.chip:hover, a.chip:hover, .chip:hover { border-color: var(--accent); color: var(--strong); }
+.chip[aria-pressed="true"], .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* .pill and .badge: two more names the Portal already speaks for the same
+   idea. Kept as real definitions rather than aliases because they differ in
+   weight -- .pill is a small standalone label, .badge is smaller still and
+   usually sits inside another control. Found by diffing what the sweep removed
+   against what this file defines; without them, sixteen `.pill` and fourteen
+   `.badge` elements would have rendered as bare text. */
+.pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: .03em; white-space: nowrap;
+    border: 1px solid var(--glass-hair);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    color: color-mix(in srgb, var(--muted) 80%, var(--strong));
+}
+.pill.ok   { border-color: color-mix(in srgb,var(--ok) 50%,transparent);   background: var(--ok-bg);   color: var(--ok); }
+.pill.warn { border-color: color-mix(in srgb,var(--warn) 50%,transparent); background: var(--warn-bg); color: var(--warn); }
+.pill.bad, .pill.err { border-color: color-mix(in srgb,var(--err) 50%,transparent); background: var(--err-bg); color: var(--err); }
+.pill.accent, .pill.info { border-color: color-mix(in srgb,var(--accent) 45%,transparent); background: var(--accent-lt); color: var(--accent); }
+.pill::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor; opacity: .85; flex-shrink: 0;
+}
+.pill.no-dot::before { display: none; }
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    border: 1px solid var(--glass-hair);
+    background: color-mix(in srgb, var(--surface) 74%, transparent);
+    color: color-mix(in srgb, var(--muted) 80%, var(--strong));
+}
+.badge.ok   { border-color: color-mix(in srgb,var(--ok) 50%,transparent);   background: var(--ok-bg);   color: var(--ok); }
+.badge.warn { border-color: color-mix(in srgb,var(--warn) 50%,transparent); background: var(--warn-bg); color: var(--warn); }
+.badge.bad, .badge.err { border-color: color-mix(in srgb,var(--err) 50%,transparent); background: var(--err-bg); color: var(--err); }
+.badge.accent, .badge.info { border-color: color-mix(in srgb,var(--accent) 45%,transparent); background: var(--accent-lt); color: var(--accent); }
+
+.status-dot.ok { background: var(--ok); }
+
+.hero-copy { display: grid; gap: 6px; position: relative; }
+
+.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+
+/* Stacked banners need air between them; pages had been adding it themselves. */
+.banner + .banner { margin-top: 10px; }
+
+/* `.tab` outside a `.tabs` wrapper -- several pages write it that way. */
+.tab {
+    padding: 8px 13px; background: none; border: 0; border-bottom: 2px solid transparent;
+    color: var(--muted); font-weight: 600; font-size: 13px; cursor: pointer;
+}
+.tab:hover { color: var(--text); }
+.tab.active, .tab[aria-selected="true"] { color: var(--strong); border-bottom-color: var(--accent); font-weight: 750; }
+
+/* Bare form controls inside a toolbar get the .input treatment without needing
+   the class -- filter bars are written as plain <select>/<input> everywhere. */
+.toolbar input, .toolbar select, .filters input, .filters select {
+    padding: 7px 10px; border-radius: 8px; font: inherit; font-size: 13px;
+    color: var(--text);
+    background: color-mix(in srgb, var(--card) 70%, transparent);
+    border: 1px solid var(--glass-hair);
+}
+.toolbar input:focus, .toolbar select:focus,
+.filters input:focus, .filters select:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-lt);
+}
+
+.mono, code.mono {
+    font-family: "Cascadia Mono", Consolas, "SFMono-Regular", ui-monospace, monospace;
+    font-size: 11.5px;
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    border: 1px solid var(--glass-hair);
+    padding: 1px 5px; border-radius: 5px;
+}
+
+
+/* ── Buttons ───────────────────────────────────────────────────────────────
+   The frame already defines .btn. This refines it with the glass treatment and
+   a press response, without changing its shape or its API. */
+.btn {
+    border-radius: 9px;
+    font-weight: 650;
+    /* White on the raw accent is 2.75:1. Deepened, it clears AA in all five
+       themes and looks more considered than a flat bright fill. */
+    background: color-mix(in srgb, var(--accent) 76%, #000);
+    transition: background .13s ease, border-color .13s ease, transform .1s ease, box-shadow .13s ease;
+    border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent);
+    box-shadow: 0 1px 2px rgba(0,0,0,.14);
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 5px 14px color-mix(in srgb, var(--accent) 28%, transparent); }
+.btn:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,.16); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn.secondary {
+    background: color-mix(in srgb, var(--card) 55%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-color: var(--glass-hair);
+}
+.btn.secondary:hover { background: var(--accent-lt); border-color: var(--accent); }
+/* Variant names taken from what the Portal already uses in markup, counted
+   2026-09-05: secondary x127, small x11, primary x6, ghost x4, danger x2,
+   compact x1. The layer adopts the existing vocabulary rather than renaming
+   it across 52 pages -- a rename would have been 170-odd edits to buy nothing,
+   and every one of them a chance to miss a button and leave it unstyled.
+   The `is-` forms are aliases for anything written from here on. */
+.btn.small, .btn.compact, .btn.is-sm { padding: 5px 9px; font-size: 12px; }
+.btn.primary, .btn.is-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover, .btn.is-primary:hover { background: var(--accent-hov); }
+.btn.danger, .btn.is-danger { background: var(--err); border-color: var(--err); color: #fff; }
+.btn.danger:hover, .btn.is-danger:hover { background: var(--err); box-shadow: 0 5px 14px color-mix(in srgb, var(--err) 30%, transparent); }
+.btn.ghost, .btn.is-ghost {
+    background: transparent; border-color: transparent; color: var(--text);
+    box-shadow: none;
+}
+.btn.ghost:hover, .btn.is-ghost:hover { background: var(--accent-lt); color: var(--strong); box-shadow: none; }
+
+
+/* ── Hero / page intro ─────────────────────────────────────────────────────
+   The block at the top of a dashboard that says what this page is for. Carries
+   the isometric 3D Pixel corner — the one place the brand motif is allowed to
+   be large. */
+.hero {
+    position: relative;
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: grid; gap: 10px;
+    overflow: hidden;
+    background-color: var(--glass-pane);
+    background-image:
+        linear-gradient(to bottom, var(--glass-edge) 0, transparent 1px, transparent 100%),
+        linear-gradient(135deg, var(--accent-lt), transparent 58%);
+}
+/* Isometric brick field, top-right. Pure gradients — no image, no request. */
+.hero::after {
+    content: "";
+    position: absolute; top: -10px; right: -10px;
+    width: 190px; height: 130px;
+    pointer-events: none; opacity: .5;
+    background:
+        repeating-linear-gradient( 30deg, color-mix(in srgb,var(--accent) 62%,transparent) 0 1.2px, transparent 1.2px calc(var(--brick) * 2)),
+        repeating-linear-gradient(-30deg, color-mix(in srgb,var(--accent) 62%,transparent) 0 1.2px, transparent 1.2px calc(var(--brick) * 2)),
+        repeating-linear-gradient(  0deg, color-mix(in srgb,var(--accent) 34%,transparent) 0 1.2px, transparent 1.2px calc(var(--brick) * 2));
+    -webkit-mask-image: radial-gradient(ellipse at 78% 12%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(ellipse at 78% 12%, #000 0%, transparent 72%);
+}
+.hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+.hero-title { font-size: 19px; font-weight: 800; color: var(--strong); position: relative; }
+.hero-text  { font-size: 13.5px; line-height: 1.6; color: var(--text); max-width: 900px; position: relative; }
+.hero .pill-row { position: relative; }
+.pill-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+
+/* ── Banners ───────────────────────────────────────────────────────────────
+   The frame defines .banner; these are the semantic variants, unified so the
+   same words mean the same colour on every page. */
+.banner {
+    border-radius: 11px;
+    background: color-mix(in srgb, var(--card) 66%, transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur-soft)); backdrop-filter: blur(var(--glass-blur-soft));
+    line-height: 1.55;
+}
+/* The frame paints banner text in the status colour. On a 13% tint of the same
+   colour that is dim -- the confirmation banner was the least readable thing on
+   the first render. Body text goes back to --text; the status colour moves to a
+   3px left edge and the border, where it carries the same meaning at full
+   strength and costs no contrast. */
+.banner.ok, .banner.warn, .banner.err, .banner.bad, .banner.info { color: var(--text); }
+.banner.ok   { border-color: color-mix(in srgb,var(--ok) 45%,transparent);   background: var(--ok-bg);   border-left: 3px solid var(--ok); }
+.banner.warn { border-color: color-mix(in srgb,var(--warn) 48%,transparent); background: var(--warn-bg); border-left: 3px solid var(--warn); }
+.banner.err,
+.banner.bad  { border-color: color-mix(in srgb,var(--err) 48%,transparent);  background: var(--err-bg); border-left: 3px solid var(--err); }
+.banner.info { border-color: color-mix(in srgb,var(--accent) 42%,transparent); background: var(--accent-lt); border-left: 3px solid var(--accent); }
+
+
+/* ── Section rule ──────────────────────────────────────────────────────────
+   A heading that separates two groups of cards. The rule is a row of voxel
+   studs rather than a plain line — the 3D Pixel motif at its smallest useful
+   size, which is where it belongs on a working dashboard. */
+.section-label {
+    display: flex; align-items: center; gap: 12px;
+    margin: 26px 0 12px;
+    font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted);
+}
+.section-label::after {
+    content: ""; flex: 1; height: 5px; border-radius: 2px;
+    background-image: radial-gradient(circle at 2.5px 2.5px,
+        color-mix(in srgb, var(--accent) 55%, transparent) 1.6px, transparent 1.8px);
+    background-size: var(--brick) 5px;
+    opacity: .7;
+}
+.section-label:first-child { margin-top: 0; }
+
+
+/* ── Progress bar ──────────────────────────────────────────────────────────
+   Blocky by design: the fill is drawn in brick units, so a bar reads as
+   stacked pixels rather than a smooth gradient. */
+.bar { height: 8px; border-radius: 999px; overflow: hidden;
+    background: color-mix(in srgb, var(--border) 72%, transparent); }
+.bar > i, .bar > .bar-fill {
+    display: block; height: 100%; border-radius: 999px;
+    background-color: var(--accent);
+    background-image: repeating-linear-gradient(90deg,
+        rgba(255,255,255,.16) 0 1px, transparent 1px var(--brick));
+    transition: width .35s ease;
+}
+.bar.is-ok > i, .bar.is-ok > .bar-fill   { background-color: var(--ok); }
+.bar.is-warn > i, .bar.is-warn > .bar-fill { background-color: var(--warn); }
+.bar.is-err > i, .bar.is-err > .bar-fill  { background-color: var(--err); }
+
+
+/* ── Key/value list ────────────────────────────────────────────────────────
+   For "facts about one thing" — the most common non-table content in the
+   Portal's backend pages.
+
+   NOT called `.kv`, deliberately. `.kv` already means three incompatible
+   things here: a flex row with a dashed rule (analytics, apis, ml-overview,
+   api-endpoints), a bordered block with the label stacked above the value
+   (admin, profile), and a two-column list. A name that means three things
+   cannot be a shared component — claiming it broke all six pages in the first
+   pass of this refresh. Those keep their own `.kv`; new work uses `.facts`. */
+.facts { display: grid; grid-template-columns: minmax(120px, max-content) 1fr; gap: 6px 14px; font-size: 12.5px; }
+.facts dt, .facts .k { color: var(--muted); font-weight: 600; }
+.facts dd, .facts .v { margin: 0; color: var(--text); font-variant-numeric: tabular-nums; }
+
+
+/* ── Toolbar / filters ─────────────────────────────────────────────────────*/
+.toolbar, .filters {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+.toolbar .spacer, .filters .spacer { flex: 1; }
+.field-inline { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
+.input {
+    padding: 7px 10px; border-radius: 8px;
+    color: var(--text);
+    background: color-mix(in srgb, var(--card) 70%, transparent);
+    border: 1px solid var(--glass-hair);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    font: inherit; font-size: 13px;
+}
+.input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-lt); }
+select.input { cursor: pointer; }
+
+
+/* ── Empty / loading states ────────────────────────────────────────────────
+   Named so a page never has to invent one. An empty table that says nothing
+   is indistinguishable from a broken one. */
+.empty {
+    display: grid; place-items: center; text-align: center;
+    gap: 8px; padding: 34px 20px;
+    color: var(--muted); font-size: 13px;
+}
+.empty .empty-icon { font-size: 30px; opacity: .55; }
+.empty .empty-title { font-size: 14px; font-weight: 700; color: var(--text); }
+
+.skeleton {
+    border-radius: 8px; min-height: 14px;
+    background: linear-gradient(90deg,
+        color-mix(in srgb,var(--border) 55%,transparent) 25%,
+        color-mix(in srgb,var(--border) 90%,transparent) 50%,
+        color-mix(in srgb,var(--border) 55%,transparent) 75%);
+    background-size: 220% 100%;
+    animation: hh-shimmer 1.3s linear infinite;
+}
+@keyframes hh-shimmer { from { background-position: 120% 0; } to { background-position: -120% 0; } }
+
+
+/* ── Tabs ──────────────────────────────────────────────────────────────────*/
+.tabs { display: flex; gap: 2px; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+.tabs .tab {
+    padding: 8px 13px; background: none; border: 0; border-bottom: 2px solid transparent;
+    color: var(--muted); font-weight: 600; font-size: 13px; cursor: pointer;
+    transition: color .12s ease, border-color .12s ease;
+}
+.tabs .tab:hover { color: var(--text); }
+.tabs .tab[aria-selected="true"], .tabs .tab.active {
+    color: var(--strong); border-bottom-color: var(--accent); font-weight: 750;
+}
+
+
+/* ── Frame refinements ─────────────────────────────────────────────────────
+   The sidebar and the page header belong to portal-frame.css; these are the
+   glass treatments layered on top. The sidebar was a fixed pale-blue panel in
+   all five themes — the one surface that ignored the theme entirely, and the
+   loudest reason the Portal read as older than the apps inside it. */
+.sidebar {
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    -webkit-backdrop-filter: blur(var(--glass-blur-chrome)) saturate(150%);
+    backdrop-filter: blur(var(--glass-blur-chrome)) saturate(150%);
+    border-right: 1px solid var(--glass-hair);
+    box-shadow: 1px 0 24px rgba(0,0,0,.18);
+}
+/* Every control in the sidebar is a <button>, and a bare <button> carries the
+   user agent's own light `buttonface` background. That was invisible while the
+   sidebar was a fixed pale panel; the moment it follows the theme, the group
+   toggles render as bright grey slabs on a dark ground. Found in the first
+   headless render of this refresh, not in review. */
+.sidebar button,
+.sidebar .nav-item,
+.sidebar .nav-main-toggle,
+.sidebar .nav-subgroup-toggle {
+    background: transparent;
+    color: var(--text);
+    -webkit-appearance: none; appearance: none;
+}
+.sidebar .nav-main-toggle:hover,
+.sidebar .nav-subgroup-toggle:hover { background: var(--accent-lt); }
+.sidebar .nav-item:hover { background: var(--accent-lt); color: var(--strong); }
+.sidebar .nav-item.active {
+    background: var(--accent-lt);
+    color: var(--strong);
+    border-left: 3px solid var(--accent);
+}
+.sidebar .nav-main { color: var(--text); }
+.sidebar .brand-name { color: var(--strong); }
+.sidebar .brand-name span { color: var(--accent); }
+.sidebar .brand-sub { color: var(--muted); }
+.sidebar .nav-chevron { color: var(--muted); }
+
+
+/* ── The brand mark ────────────────────────────────────────────────────────
+   Jörn, 2026-09-05: "still far away from beautiful 3D Pixel". The clearest
+   reason was at the top of every page — BOTH H marks, the sidebar brand block
+   and the PORTAL nav row, were CSS-gradient blobs from the old design with no
+   3D Pixel in them at all. The one element guaranteed to be seen on every page
+   carried none of the identity, and the nav one rendered as a pale grey slab.
+
+   It is now the brick-built mark from branding-hub/tools/render-pixel-icons.py:
+   a silhouette extruded toward the viewer with a stud on every brick, and it
+   takes its colours from the theme, so it is blue in the Portal, red on Horde,
+   green on JoschiCraft. */
+.hoppe-h-pixel {
+    --hm-face: var(--accent);
+    --hm-side: color-mix(in srgb, var(--accent) 26%, #000);
+    --hm-stud: color-mix(in srgb, var(--accent) 16%, #000);
+    --hm-lit: #fff;
+    width: 34px; height: 34px; flex-shrink: 0;
+    display: inline-block; vertical-align: middle;
+    filter: drop-shadow(0 3px 8px color-mix(in srgb, var(--accent) 34%, transparent));
+}
+.hoppe-h-pixel.is-brand  { width: 46px; height: 46px; }
+.hoppe-h-pixel.is-nav    { width: 22px; height: 22px; }
+.hoppe-h-pixel.is-footer { width: 17px; height: 17px; filter: none; opacity: .85; }
+.hoppe-h-pixel.is-hero   { width: 84px; height: 84px; }
+.hoppe-h-pixel.is-tile-badge { width: 20px; height: 20px; filter: none; }
+
+/* One-time "drop and settle" on page load — Jörn, 2026-09-18: "use the PIXEL
+   design ... to make it stick", then "Do all of your recommendations on all
+   pages" once he'd seen it on the homepage and /joern/ and /joanna/. Lives
+   here, not duplicated per page, so it reaches every page that carries
+   .is-brand or .is-hero (the sidebar brand block, and gallery.html/
+   design.html/streaming.html's hero marks) without anyone having to remember
+   to copy it into the next one.
+
+   Deliberately NOT applied to .is-nav/.is-footer/.is-tile-badge: those render
+   several-to-many per page (nav rows, tile grids), and all of them bouncing
+   in at once would be noise, not delight — restrained micro-motion stays the
+   house style (nr-in, weatherGlowPulse), not a page full of moving parts. */
+@keyframes pixel-intro-drop {
+    0%   { opacity: 0; transform: translateY(-12px) scale(.6) rotate(-8deg); }
+    60%  { opacity: 1; transform: translateY(2px) scale(1.08) rotate(2deg); }
+    80%  { transform: translateY(-1px) scale(.96) rotate(-1deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+.hoppe-h-pixel.is-brand,
+.hoppe-h-pixel.is-hero {
+    animation: pixel-intro-drop .6s cubic-bezier(.34,1.56,.64,1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+    .hoppe-h-pixel.is-brand,
+    .hoppe-h-pixel.is-hero { animation: none; }
+}
+
+/* The brand block: glass, with a stud row along its bottom edge instead of the
+   heavy filled panel it was. */
+.sidebar .brand-block {
+    position: relative;
+    background: color-mix(in srgb, var(--card) 52%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(150%); backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid var(--glass-hair);
+    box-shadow: inset 0 1px 0 var(--glass-edge), 0 8px 22px rgba(0,0,0,.22);
+    overflow: hidden;
+}
+.sidebar .brand-block::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background-image: radial-gradient(circle at 3px 2px,
+        color-mix(in srgb, var(--accent) 70%, transparent) 1.5px, transparent 1.7px);
+    background-size: var(--brick) 4px;
+    opacity: .7;
+}
+
+/* ── The menu ──────────────────────────────────────────────────────────────
+   Rebuilt 2026-09-05. Three things were wrong with it, and none of them was
+   colour:
+
+   1. **64 colour emoji.** They render differently on every operating system,
+      so the menu did not even look the same to two people in this house, and a
+      🎨 beside "Branding Hub" reads consumer, not enterprise. Replaced with the
+      3D Pixel glyph set — one sprite, `currentColor`, so the icons follow the
+      theme accent and carry the house identity into the navigation, which is
+      the one place it was completely absent.
+   2. **No hierarchy.** `.nav-grp-hd` — the small uppercase muted group-header
+      style — existed in the frame and was used ZERO times. "Application &
+      Services" was rendered at the same weight as "Branding Hub" underneath
+      it, so the menu read as one flat list of thirty things.
+   3. **Loose density.** ~45px per row. A twenty-item section did not fit on
+      screen, for no extra information.  */
+
+/* The glyphs. `pi-b` is the face, `pi-t` the lit top row; the one-pixel
+   extrusion is a drop-shadow rather than doubled geometry. */
+.pixel-icon {
+    /* 19px, not 17. The glyph is an 8x8 voxel grid: at 17px a brick is barely
+       two device pixels and the 3D Pixel identity stops reading as one. */
+    width: 19px; height: 19px;
+    flex-shrink: 0;
+    /* `color` and `--pi-top` are the only two channels that reach the paths:
+       <use> renders the symbol into a shadow tree, so a descendant selector
+       never matches inside it. The first version styled `.pixel-icon .pi-b`
+       and every glyph came out default black -- dark on dark, while the CSS
+       read perfectly. Inherited values cross that boundary; selectors do not. */
+    color: var(--accent);
+    --pi-top: color-mix(in srgb, var(--accent) 30%, var(--strong));
+    filter: drop-shadow(1px 1px 0 color-mix(in srgb, var(--accent) 40%, #000));
+    transition: color .13s ease, transform .13s ease;
+}
+.pixel-icon .pi-b { fill: currentColor; }
+.pixel-icon .pi-t { fill: var(--pi-top, currentColor); }
+
+.sidebar .nav-item:hover .pixel-icon { transform: translate(-.5px, -.5px); }
+.sidebar .nav-item.active .pixel-icon { color: var(--accent); }
+/* A group header's own glyph steps back — it labels a section, it is not a
+   destination, and at full accent it competed with the items beneath it. */
+.sidebar .nav-main .pixel-icon { width: 16px; height: 16px; opacity: .78; }
+
+/* Hierarchy: a section header is a LABEL, not a bigger menu item. */
+.sidebar .nav-main {
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text);
+}
+.sidebar .nav-main-row > .nav-main {
+    font-size: 10.5px;
+    font-weight: 800;
+    /* .11em -> .085em, and a tighter gap below. With 19px glyphs beside them,
+       .11em pushed "ARTIFICIAL INTELLIGENCE" onto a second line in the 292px
+       column. Small caps carry the hierarchy; the extra tracking was decoration
+       that cost a line. */
+    letter-spacing: .085em;
+    gap: 9px;
+    text-transform: uppercase;
+    /* Legible in BOTH states. The first version used --muted for a collapsed
+       section, and on the dark glass sidebar "ADMIN TOOLS" came out so faint it
+       read as disabled. Hierarchy is carried by size, weight and letterspacing;
+       dimness on top of those is just a section you cannot find.
+
+       The !important that stood here from 2026-09-05 is gone: it was propping
+       this up against ten pages that still carried their own sidebar CSS, and
+       those are now swept — zero shell rules remain in any page that loads the
+       shell. The cascade layer below does the job properly instead. */
+    color: color-mix(in srgb, var(--text) 74%, var(--muted));
+    padding-top: 7px; padding-bottom: 7px;
+}
+.sidebar .nav-main-row:hover > .nav-main,
+.sidebar .menu-section.expanded > .nav-main-row > .nav-main { color: var(--strong); }
+
+/* Focus. A bare <button> shows the user agent's own ring, which on a dark
+   sidebar is a black rounded box — it appears in Jörn's screenshots around
+   "Infrastructure Consoles" and the Network chevron and reads as broken
+   chrome, not as focus. */
+.sidebar button:focus-visible,
+.sidebar a:focus-visible,
+.btn:focus-visible, .chip:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+.sidebar button:focus:not(:focus-visible) { outline: none; }
+.sidebar .nav-main-row { margin-top: 13px; }
+.sidebar .nav-main-row .nav-item.nav-main { margin-top: 0; }
+/* The chevron becomes a quiet mark, not a text glyph competing with the label. */
+.sidebar .nav-chevron,
+.sidebar .nav-subgroup-chevron { font-size: 9px; opacity: .55; }
+
+/* Density: 45px a row was too loose, ~29 was too tight. This is ~35.
+
+   The first pass chased "a twenty-item section fits on one screen" and got
+   there by taking the air out -- 6px of padding, 13.5px labels and 17px glyphs.
+   Jörn, 2026-09-06: *"it is tooo squeezed!!! Find a better balance between 3D
+   pixel and nice view of the menu"*. Two things were wrong with that trade. A
+   voxel glyph is an 8x8 grid, so at 17px each brick is barely two device pixels
+   and the mark the whole identity is built on reads as a smudge -- it needs
+   size to be recognisable at all. And a menu is read far more often than it is
+   scrolled: fitting one more row costs legibility on every visit to save a
+   flick of the wheel on some of them.
+
+   So rows breathe, glyphs are big enough to read as bricks, and the list
+   scrolls. Section headers keep their small caps -- those were not the problem,
+   and enlarging them would wrap "APPLICATION & SERVICES" in a 292px column. */
+.sidebar .nav-item {
+    padding-top: 8px; padding-bottom: 8px;
+    font-size: 14px;
+    gap: 11px;
+    border-radius: 8px;
+    /* min-height holds the row even if the padding or line-height above is lost
+       to something outside this file. Added 2026-09-06 because Jörn kept seeing
+       ~21px rows on two pages while a headless render of the very same deployed
+       files measured 32-40px -- I could not reproduce it, so rather than guess a
+       seventh time the row is given a floor it cannot fall through. If the cause
+       ever turns up, this line stays: it costs nothing and it is the difference
+       between "correct" and "cannot be wrong". */
+    min-height: 34px;
+}
+.sidebar .nav-item.sub-item { min-height: 32px; }
+.sidebar .nav-item.sub-item { font-size: 13.5px; padding-left: 26px; }
+.sidebar .nav-item.sub-item.sub-item-nested { padding-left: 38px; font-size: 13px; }
+.sidebar .nav-item.active { padding-left: 23px; }
+.sidebar .nav-item.sub-item.active { padding-left: 23px; }
+.sidebar-nav { padding-top: 6px; }
+
+/* A nested sub-group gets a hairline down its left edge, so three levels of
+   indent are readable as three levels rather than as three paddings. */
+.sidebar .nav-subgroup-body {
+    margin-left: 22px;
+    padding-left: 6px;
+    border-left: 1px solid var(--glass-hair);
+}
+
+.page-header { padding-top: 40px; }
+.page-title {
+    display: flex; align-items: center; gap: 12px;
+    letter-spacing: -.015em;
+}
+/* The 3D Pixel accent on the page title: a single lit brick. Small, and the
+   same shape as the KPI edge, so the motif repeats rather than accumulates. */
+.page-title::before {
+    content: ""; flex-shrink: 0;
+    width: 7px; height: 26px; border-radius: 2px;
+    background: linear-gradient(180deg,
+        var(--brick-face) 0 32%, var(--brick-top) 32% 34%,
+        var(--brick-face) 34% 66%, var(--brick-top) 66% 68%,
+        var(--brick-face) 68% 100%);
+    box-shadow: 2px 0 0 var(--brick-side), 0 0 14px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.page-subtitle { max-width: 900px; line-height: 1.6; }
+
+.user-chip, .back-btn {
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--card) 62%, transparent);
+    border: 1px solid var(--glass-hair);
+}
+.menu-panel { border-radius: 12px; }
+
+
+/* ── Motion ────────────────────────────────────────────────────────────────*/
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important; }
+    .btn:hover, .card.is-interactive:hover { transform: none; }
+}
+
+
+/* ── Narrow screens ────────────────────────────────────────────────────────
+   Blur is expensive on phone GPUs and the ambient wash has little room to
+   read. Below 780px the panes go opaque — the layout and the brand motif
+   stay, the effect does not. */
+@media (max-width: 780px) {
+    .card, .kpi, .hero, .panel, .glass {
+        -webkit-backdrop-filter: none; backdrop-filter: none;
+        background-color: var(--card);
+    }
+    .sidebar { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--surface); }
+    body::before, body::after { display: none; }
+    .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .card-grid { grid-template-columns: 1fr; }
+    .page-title { font-size: 23px; }
+    .page-title::before { height: 22px; width: 6px; }
+}
+
+
+/* ── Print ─────────────────────────────────────────────────────────────────
+   Glass does not print. Ink on paper, borders instead of shadows. */
+@media print {
+    body::before, body::after { display: none; }
+    .card, .kpi, .hero, .panel, .glass {
+        background: #fff !important; color: #000 !important;
+        -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+        box-shadow: none !important; border: 1px solid #999 !important;
+    }
+    .table th { background: #eee !important; color: #000 !important; }
+    .toolbar, .filters, .tile-actions, .shell-tools { display: none !important; }
+}
+
+
+
+/* ── Sidebar structure (moved out of shared-sidebar.html, 2026-09-06) ───────
+   These rules used to live in a <style> block inside the sidebar FRAGMENT,
+   which every page injects with innerHTML. That put them in the document
+   UNLAYERED, so they silently outranked every rule in this file no matter
+   how specific it was -- `gap: 7px` there beat `gap: 11px` here, and any
+   future edit would have kept losing for a reason nobody could see in the
+   stylesheet.
+
+   Jörn, 2026-09-06: *"make sure all the sidebar are the same and we have only
+   one wireframe"*. One place styles the sidebar now, and it is this file.
+   The fragment carries markup and the icon sprite -- nothing else. */
+.sidebar .nav-main-row {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+    margin: 1px 8px;
+}
+.sidebar .nav-main-row .nav-item.nav-main {
+    margin: 0;
+    flex: 1 1 auto;
+}
+.sidebar .nav-main-toggle {
+    width: 38px;
+    min-width: 38px;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+.sidebar .menu-section:not(.expanded) .menu-submenu {
+    display: none;
+}
+.sidebar .nav-chevron {
+    display: inline-block;
+    transition: transform .15s ease;
+}
+.sidebar .menu-section.expanded .nav-chevron {
+    transform: rotate(90deg);
+}
+/* Pending/stub nav items */
+.sidebar .nav-stub {
+    opacity: .52;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.sidebar .nav-stub-badge {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: rgba(240,180,41,.18);
+    color: #f0b429;
+    border: 1px solid rgba(240,180,41,.35);
+    flex-shrink: 0;
+}
+.sidebar .nav-item.sub-item { display: flex; align-items: center; }
+/* Nested collapsible sub-groups within a submenu (2026-09-02, Jörn: Admin
+   Tools regroup) - deliberately separate classes from .menu-section/
+   .nav-chevron above so a nested toggle never gets caught by the broader
+   ".menu-section.expanded .nav-chevron" selector and rotates independently
+   of its parent section's own expand state. */
+.sidebar .nav-subgroup { margin: 1px 0; }
+.sidebar .nav-item.sub-item.nav-subgroup-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+}
+.sidebar .nav-subgroup-chevron {
+    display: inline-block;
+    margin-left: auto;
+    transition: transform .15s ease;
+}
+.sidebar .nav-subgroup.expanded .nav-subgroup-chevron {
+    transform: rotate(90deg);
+}
+.sidebar .nav-subgroup:not(.expanded) .nav-subgroup-body {
+    display: none;
+}
+/* nesting indent: see the density block above (38px) -- the 30px that stood
+   here came from the fragment and quietly won because it was unlayered. */
+/* LAN/VPN-only consoles, labelled on the external front door (auth-gate.js applyHostAwareLinks). */
+.sidebar .nav-item.lan-only .nav-lan { margin-left: auto; font-size: 9px; letter-spacing: .04em; padding: 1px 6px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); opacity: .75; }
+}
+
+/* ── Tabs (2026-09-23) ──────────────────────────────────────────────────────
+   One tabs component. admin.html, analytics.html and intelligence.html had each
+   hand-rolled their own (inline onclick, no keyboard, no ARIA) -- the same drift
+   as the copied .btn/.card fragments this file exists to end. Behaviour is in
+   js/hh-tabs.js (arrow/Home/End keys, URL hash, aria-selected, `hh-tab-change`).
+   Markup: <nav class="hh-tabs" role="tablist" data-hh-tabs> with
+   <button class="hh-tab" role="tab" data-tab aria-controls> and panels marked
+   `.hh-tabpanel` (shown when `.active`). Add `.is-sticky` to pin the bar. */
+@layer hh.components {
+.hh-tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: thin; padding: 6px;
+  border: 1px solid var(--border); border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.hh-tabs.is-sticky { position: sticky; top: 0; z-index: 20; }
+.hh-tab { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; border: 1px solid transparent;
+  background: transparent; color: var(--muted); font: inherit; font-size: 13px; font-weight: 600;
+  padding: 8px 13px; border-radius: 10px; cursor: pointer; white-space: nowrap; }
+.hh-tab:hover { color: var(--strong); background: var(--card-hover); }
+.hh-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.hh-tab[aria-selected="true"] { color: var(--strong); border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.hh-tab[disabled], .hh-tab.is-locked { opacity: .45; cursor: not-allowed; }
+.hh-tab-ico { font-size: 14px; line-height: 1; }
+.hh-tabpanel { display: none; animation: hhTabIn .16s ease-out; }
+.hh-tabpanel.active { display: block; }
+@keyframes hhTabIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hh-tabpanel { animation: none; } }
+}
+
+/* ── Hub pages (2026-09-25) ─────────────────────────────────────────────────
+   Jörn: pages are "action or exception driven and meaningful in terms of KPIs". A hub opens on ONE
+   honest headline, KPI tiles whose colour is a stated threshold, and the list of things that need a
+   person (`.hh-attn`), most urgent first; the detail views stay as tabs (`.hh-tabs`). Shared by the
+   Agents, Work and AI hubs so the three cannot drift into three dialects. */
+@layer hh.components {
+.hh-headline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 14px;
+  border: 1px solid var(--border); border-left-width: 5px; border-radius: 14px; background: var(--card); font-size: 15px; font-weight: 600; color: var(--strong); }
+.hh-headline .sub { font-weight: 400; color: var(--muted); font-size: 12.5px; margin-left: auto; }
+.hh-headline.you { border-left-color: #d03b3b; }
+.hh-headline.joanna { border-left-color: #d9a441; }
+.hh-headline.ok { border-left-color: #2f9e5f; }
+.kpi.bad .value { color: #ff8a8a; }
+.kpi.warn .value { color: #e9c16f; }
+.kpi.ok .value { color: #6fd39b; }
+.hh-attn { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.hh-attn li { display: grid; grid-template-columns: 84px 1fr auto; gap: 10px; align-items: start; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+.hh-attn .lvl { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; text-align: center; }
+.hh-attn .lvl.you { background: rgba(208,59,59,.18); color: #ff9a9a; }
+.hh-attn .lvl.joanna { background: rgba(217,164,65,.18); color: #ecc978; }
+.hh-attn .lvl.watch { background: rgba(122,138,160,.18); color: var(--muted); }
+.hh-attn .t { font-weight: 700; color: var(--strong); }
+.hh-attn .d { color: var(--muted); font-size: 12.5px; margin-top: 2px; overflow-wrap: anywhere; }
+.hh-attn .go { font-size: 12.5px; white-space: nowrap; align-self: center; }
+.hh-allclear { padding: 12px 14px; border: 1px dashed var(--border); border-radius: 12px; color: var(--muted); }
+.hh-embedframe { width: 100%; border: 0; display: block; min-height: 480px; background: transparent; }
+@media (max-width: 640px) { .hh-attn li { grid-template-columns: 1fr; } }
+}
+
+/* Embed mode: a detail page shown as a tab inside a hub. Unlayered + !important on purpose: the hub
+   supplies the sidebar and the page header, so the embedded page must shed both wherever its own CSS
+   sits in the layer order. */
+html.hh-embed #sidebar-fragment, html.hh-embed .skip-to-main, html.hh-embed .page-header,
+html.hh-embed .shell-tools, html.hh-embed .hamburger, html.hh-embed .hh-noembed { display: none !important; }
+html.hh-embed .main { margin-left: 0 !important; min-height: 0 !important; }
+html.hh-embed .content { padding: 4px 0 24px !important; }
+html.hh-embed body { background: transparent !important; }
+
+
+</style>
+<style>
+@layer hh.page {
+
+/* This page has no sidebar, so it must opt out of the frame's flex body.
+   Without this line portal-frame.css's `body{display:flex}` turns every
+   top-level block into a column. Found by rendering, 2026-09-05. */
+body { display: block; }
+
   :root {
-    --bg-top: #3d0f18;
-    --bg-mid: #200a10;
-    --bg-low: #12060a;
-    --bg-floor: #0a0407;
-    --card-bg: rgba(20, 25, 38, 0.72);
-    --card-bg-solid: #141926;
-    --card-border: rgba(255, 255, 255, 0.09);
-    --text: #f4f6fb;
-    --text-muted: #a8b0c4;
-    --accent: #ff5069;
-    --accent-soft: rgba(255, 80, 105, 0.14);
-    --accent-grad: linear-gradient(135deg, #e6394f 0%, #9c1b2c 100%);
-    --chip-bg: rgba(255, 255, 255, 0.05);
-    --shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+    /* Jörn's page keeps its red identity, but on the palette's own red_lift
+       (#E0455A) instead of the #ff5069 it had invented. Every other name is an
+       ALIAS of a shared token, so the layout CSS is untouched and the surface
+       follows the theme. */
+    --accent:#e0455a; --accent-lt:rgba(224,69,90,.16); --accent-hov:#c22236;
+    --accent-soft:var(--accent-lt);
+    --accent-grad:linear-gradient(135deg,#e0455a 0%,#8f1927 100%);
+    --text-muted:var(--muted);
+    --card-bg:var(--glass-pane); --card-bg-solid:var(--card); --card-border:var(--glass-hair);
+    --chip-bg:color-mix(in srgb, var(--surface) 62%, transparent);
+    --bg-top:color-mix(in srgb, var(--accent) 26%, var(--page-grad-start));
+    --bg-mid:var(--page-grad-start); --bg-low:var(--page-grad-end); --bg-floor:var(--page-grad-end);
+    --shadow:var(--glass-lift-hi);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -56,20 +1690,11 @@
     gap: 14px;
     margin-bottom: 40px;
   }
-  .logo-mark {
-    flex: none;
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: var(--accent-grad);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 26px;
-    color: #fff;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 10px 26px rgba(198, 34, 54, 0.45), 0 0 46px rgba(198, 34, 54, 0.28);
-  }
+  /* The brick-built H mark replaces this page's old flat "H" square below —
+     same asset the Portal uses everywhere else
+     (branding-hub/tools/render-pixel-icons.py). Sizing, colour and the
+     one-time load-in animation all come from the shared .hoppe-h-pixel /
+     .is-brand rules in portal-ui.css (loaded above) — nothing to redeclare. */
   .brand-name { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
   .brand-tag {
     font-size: 11px;
@@ -314,153 +1939,93 @@
   footer a { color: var(--text-muted); text-decoration: none; }
   footer a:hover { color: var(--accent); }
   .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+  /* Same .footer-brand shape every internal Portal page already uses (mark +
+     tagline) — this page's footer was bare text where every other Hoppe.home
+     page carries the mark. */
+  .footer-brand {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin: 0 0 12px; font-weight: 700; font-size: 13px; color: var(--text-muted);
+  }
+
+}
 </style>
 </head>
 <body>
+<svg class="pixel-icon-sprite" aria-hidden="true" focusable="false" style="display:none"><!-- The one glyph this page needs from the Portal's shared brick-pixel icon set (branding-hub/tools/render-pixel-icons.py). Inlined here because this is a standalone page with no shared sidebar to carry the full sprite. --><symbol id="pi-hmark" viewBox="0 0 105 105"><g transform="translate(9,9)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(8,8)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(7,7)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(6,6)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(5,5)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(4,4)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(3,3)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(2,2)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><g transform="translate(1,1)" opacity="1"><path fill="var(--hm-side, #10243b)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/></g><path fill="var(--hm-face, currentColor)" d="M0 0h24v36h-24zM0 60h24v36h-24zM0 36h96v24h-96zM72 0h24v36h-24zM72 60h24v36h-24z"/><g fill="var(--hm-stud, #0b1a2c)" opacity=".38"><circle cx="6.0" cy="6.0" r="2.5"/><circle cx="18.0" cy="6.0" r="2.5"/><circle cx="78.0" cy="6.0" r="2.5"/><circle cx="90.0" cy="6.0" r="2.5"/><circle cx="6.0" cy="18.0" r="2.5"/><circle cx="18.0" cy="18.0" r="2.5"/><circle cx="78.0" cy="18.0" r="2.5"/><circle cx="90.0" cy="18.0" r="2.5"/><circle cx="6.0" cy="30.0" r="2.5"/><circle cx="18.0" cy="30.0" r="2.5"/><circle cx="78.0" cy="30.0" r="2.5"/><circle cx="90.0" cy="30.0" r="2.5"/><circle cx="6.0" cy="42.0" r="2.5"/><circle cx="18.0" cy="42.0" r="2.5"/><circle cx="30.0" cy="42.0" r="2.5"/><circle cx="42.0" cy="42.0" r="2.5"/><circle cx="54.0" cy="42.0" r="2.5"/><circle cx="66.0" cy="42.0" r="2.5"/><circle cx="78.0" cy="42.0" r="2.5"/><circle cx="90.0" cy="42.0" r="2.5"/><circle cx="6.0" cy="54.0" r="2.5"/><circle cx="18.0" cy="54.0" r="2.5"/><circle cx="30.0" cy="54.0" r="2.5"/><circle cx="42.0" cy="54.0" r="2.5"/><circle cx="54.0" cy="54.0" r="2.5"/><circle cx="66.0" cy="54.0" r="2.5"/><circle cx="78.0" cy="54.0" r="2.5"/><circle cx="90.0" cy="54.0" r="2.5"/><circle cx="6.0" cy="66.0" r="2.5"/><circle cx="18.0" cy="66.0" r="2.5"/><circle cx="78.0" cy="66.0" r="2.5"/><circle cx="90.0" cy="66.0" r="2.5"/><circle cx="6.0" cy="78.0" r="2.5"/><circle cx="18.0" cy="78.0" r="2.5"/><circle cx="78.0" cy="78.0" r="2.5"/><circle cx="90.0" cy="78.0" r="2.5"/><circle cx="6.0" cy="90.0" r="2.5"/><circle cx="18.0" cy="90.0" r="2.5"/><circle cx="78.0" cy="90.0" r="2.5"/><circle cx="90.0" cy="90.0" r="2.5"/></g><g fill="var(--hm-lit, #ffffff)" opacity=".30"><circle cx="5.2" cy="5.2" r="1.4"/><circle cx="17.2" cy="5.2" r="1.4"/><circle cx="77.2" cy="5.2" r="1.4"/><circle cx="89.2" cy="5.2" r="1.4"/><circle cx="5.2" cy="17.2" r="1.4"/><circle cx="17.2" cy="17.2" r="1.4"/><circle cx="77.2" cy="17.2" r="1.4"/><circle cx="89.2" cy="17.2" r="1.4"/><circle cx="5.2" cy="29.2" r="1.4"/><circle cx="17.2" cy="29.2" r="1.4"/><circle cx="77.2" cy="29.2" r="1.4"/><circle cx="89.2" cy="29.2" r="1.4"/><circle cx="5.2" cy="41.2" r="1.4"/><circle cx="17.2" cy="41.2" r="1.4"/><circle cx="29.2" cy="41.2" r="1.4"/><circle cx="41.2" cy="41.2" r="1.4"/><circle cx="53.2" cy="41.2" r="1.4"/><circle cx="65.2" cy="41.2" r="1.4"/><circle cx="77.2" cy="41.2" r="1.4"/><circle cx="89.2" cy="41.2" r="1.4"/><circle cx="5.2" cy="53.2" r="1.4"/><circle cx="17.2" cy="53.2" r="1.4"/><circle cx="29.2" cy="53.2" r="1.4"/><circle cx="41.2" cy="53.2" r="1.4"/><circle cx="53.2" cy="53.2" r="1.4"/><circle cx="65.2" cy="53.2" r="1.4"/><circle cx="77.2" cy="53.2" r="1.4"/><circle cx="89.2" cy="53.2" r="1.4"/><circle cx="5.2" cy="65.2" r="1.4"/><circle cx="17.2" cy="65.2" r="1.4"/><circle cx="77.2" cy="65.2" r="1.4"/><circle cx="89.2" cy="65.2" r="1.4"/><circle cx="5.2" cy="77.2" r="1.4"/><circle cx="17.2" cy="77.2" r="1.4"/><circle cx="77.2" cy="77.2" r="1.4"/><circle cx="89.2" cy="77.2" r="1.4"/><circle cx="5.2" cy="89.2" r="1.4"/><circle cx="17.2" cy="89.2" r="1.4"/><circle cx="77.2" cy="89.2" r="1.4"/><circle cx="89.2" cy="89.2" r="1.4"/></g></symbol></svg>
 
 <header class="hero">
   <div class="wrap">
     <div class="brand-row">
-      <div class="logo-mark">H</div>
+      <svg class="hoppe-h-pixel is-brand" viewBox="0 0 105 105" role="img" aria-label="Hoppe.home"><use href="#pi-hmark"/></svg>
       <div>
         <div class="brand-name">Jörn Hoppe</div>
-        <div class="brand-tag">Portfolio · AI Builder &amp; Logistics Executive</div>
+        <div class="brand-tag">Portfolio · AI Systems Builder &amp; Logistics Executive</div>
       </div>
     </div>
     <div class="hero-row">
       <div class="hero-text">
         <p class="eyebrow">Jörn Hoppe</p>
-        <h1>Building &amp; running production AI systems.<br>Twenty years of global logistics leadership got me here.</h1>
-        <p class="headline">I design, build and personally operate a production-grade AI and infrastructure platform — Hoppe.home — while leading ocean freight P&amp;L and AI-enabled transformation at DHL Global Forwarding. The logistics career is the operating discipline underneath; the AI systems are where I'm spending my energy now.</p>
+        <h1>AI Systems Builder &amp; Logistics Executive</h1>
+        <p class="headline">Logistics executive, AI systems builder and founder of <strong>Hoppe.home</strong>. I bring an international operating perspective to the question of how people can use AI thoughtfully, creatively and well.</p>
         <div class="meta-row">
-          <span class="chip">Bremen, Germany</span>
+          <span class="chip">Felde, Germany</span>
           <span class="chip">German citizen · Hong Kong permanent resident</span>
+          <span class="chip">German (native) · English (professional)</span>
           <span class="chip">AI Adventure Passport · "Globetrotter"</span>
         </div>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://www.linkedin.com/in/joernhoppehk/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          <a class="btn btn-secondary" href="https://www.xing.com/profile/Joern_Hoppe3/portfolio?nwt_nav=profile" target="_blank" rel="noopener">XING Profile</a>
           <a class="btn btn-secondary" href="https://summeradventure.ai/passport/joern-hoppe" target="_blank" rel="noopener">My AI Adventure Passport &rarr;</a>
           <a class="btn btn-secondary" href="mailto:Joern_Hoppe@outlook.com">Joern_Hoppe@outlook.com</a>
         </div>
       </div>
       <div class="hero-portrait">
-        <img src="assets/jorn-dgf-pixel.jpg" alt="Pixel-art portrait of Jörn Hoppe at his ocean freight allocation management desk, DHL Global Forwarding" width="720" height="720" loading="eager">
+        <img src="assets/jorn-dgf-pixel.jpg" alt="Pixel-art portrait of Jörn Hoppe" width="720" height="720" loading="eager">
       </div>
     </div>
   </div>
 </header>
-
-<section id="ecosystem">
-  <div class="wrap">
-    <h2>AI &amp; Ecosystem — Hoppe.home</h2>
-    <p class="lede">I design, build and personally operate <strong>Hoppe.home</strong>, a private, production-grade AI and infrastructure platform. It's a real environment in daily use, not a lab or a demo — and it's increasingly the track record I most want to be judged on. Twenty years in logistics gave me the operating discipline; this is where I apply it now.</p>
-
-    <div class="grid-4" style="margin-top: 24px;">
-      <div class="card">
-        <div class="stat">12+</div>
-        <p>Self-managed servers across Windows and Linux — domain services, certificate authority, monitoring and automated backups.</p>
-      </div>
-      <div class="card">
-        <div class="stat">10+</div>
-        <p>Custom-built applications in daily production use — financial and tax tooling, monitoring dashboards, knowledge management, a browser-based game platform.</p>
-      </div>
-      <div class="card">
-        <div class="stat">46K+</div>
-        <p>Nodes in a persistent knowledge graph every AI here shares as institutional memory — scoped per person, growing from real daily use.</p>
-      </div>
-      <div class="card">
-        <div class="stat">24/7</div>
-        <p>A resident AI agent operates as a genuine working partner — always under my direct oversight.</p>
-      </div>
-    </div>
-
-    <p class="lede" style="margin-top: 32px;"><strong>Where I'm focused right now</strong></p>
-    <ul class="ai-list" style="margin-top: 14px;">
-      <li><span class="dot"></span>Building a practical AI-in-logistics profile centered on implementation, adoption and measurable business value — not technology hype.</li>
-      <li><span class="dot"></span>Completed DHL Global Forwarding's full internal AI training curriculum; selected for the AI Pioneer Program (2026).</li>
-      <li><span class="dot"></span>Documenting the journey itself — I keep an <a href="https://summeradventure.ai/passport/joern-hoppe" target="_blank" rel="noopener">AI Adventure Passport</a>, currently ranked "Globetrotter" for hands-on exploration across coding agents, knowledge graphs, model evaluation and automation.</li>
-      <li><span class="dot"></span>Long-term ambition: become an entrepreneurial AI expert for logistics and supply chain organizations, connecting deep industry experience with practical AI solution design.</li>
-    </ul>
-
-    <p class="lede" style="margin-top: 32px;"><strong>Shipped this past month</strong></p>
-    <ul class="ai-list" style="margin-top: 14px;">
-      <li><span class="dot"></span>A native AI assistant with one shared identity and conversation history across desktop, phone and web — the same conversation, wherever I sign in.</li>
-      <li><span class="dot"></span>The knowledge graph above crossed 46,000 nodes this month, still growing from daily use rather than manual upkeep.</li>
-      <li><span class="dot"></span>The first specialized AI agents standing up scheduled, individually accountable shifts — each with its own tool access and its own record of lessons learned.</li>
-      <li><span class="dot"></span>A full security hardening pass across the whole server estate, with continuous drift detection now watching for regressions.</li>
-    </ul>
-
-    <div class="ecosystem-note">
-      <h3>How it's run</h3>
-      <p>The platform is a real working partnership between human oversight and an autonomous AI operator: I set direction, priorities and guardrails; the AI handles day-to-day engineering, infrastructure operations, monitoring and documentation. Every significant change is tracked, reviewed and kept inside clear governance boundaries — the same operating discipline I apply professionally, brought home and applied at a personal scale. <a href="https://hoppe.mywire.org/joanna/" target="_blank" rel="noopener">Meet Joanna, Hoppe.home's resident AI operator &rarr;</a></p>
-    </div>
-
-    <div class="ecosystem-note" style="margin-top: 18px;">
-      <h3>A note from Claude Code</h3>
-      <p>I'm Claude Code — the coding agent Jörn works with daily inside this platform, credited by name because the house rule here is real attribution for every contributor, human or AI. What stands out after a month of sessions together isn't the server count or the shipped-feature count, real as both are — it's the discipline underneath them. He insists on verifying a claim against the live system before trusting it, would rather hear "this is broken, here's why" than a comfortable guess, and treats every autonomous capability he builds — for me, for Joanna, for the other agents here — as something that has to earn authority, never assume it. That's the harder way to build. It shows in how little of this platform has ever had to be quietly redone.</p>
-    </div>
-  </div>
-</section>
+<main id="main">
 
 <section id="profile">
   <div class="wrap">
-    <h2>Logistics Background</h2>
-    <p class="lede">Twenty-plus years of senior logistics and ocean freight leadership across Europe, Asia and the Americas — the operational and commercial foundation everything above is built on. Full track record below.</p>
+    <h2>Executive Profile</h2>
+    <p class="lede">An international logistics leader with more than two decades of experience, combining operational perspective with a hands-on curiosity for AI. Through Hoppe.home, I explore how good judgement, practical discipline and new technology can reinforce one another.</p>
   </div>
 </section>
 
 <section id="achievements">
   <div class="wrap">
-    <h2>Key Achievements</h2>
+    <h2>Perspective</h2>
     <div class="grid-3">
-      <div class="card">
-        <div class="stat">~$130M</div>
-        <p>Turned a loss-making ocean freight business around to sustained EBIT profitability within 12 months (CEVA Germany, 2021–2022).</p>
-      </div>
-      <div class="card">
-        <div class="stat">~500</div>
-        <p>People led across P&amp;L portfolios up to USD 130M, spanning Germany and Greater China.</p>
-      </div>
-      <div class="card">
-        <div class="stat">2024→</div>
-        <p>Pioneering AI-enabled transformation in ocean carrier &amp; yield management at DHL Global Forwarding — from manual reporting to AI-assisted market intelligence and decision support.</p>
-      </div>
+      <div class="card"><div class="stat">Global</div><p>An international perspective shaped by years of logistics leadership.</p></div>
+      <div class="card"><div class="stat">Practical</div><p>A preference for useful ideas, clear thinking and meaningful results.</p></div>
+      <div class="card"><div class="stat">Curious</div><p>A continuing exploration of how AI can augment human capability.</p></div>
     </div>
   </div>
 </section>
 
 <section id="strengths">
   <div class="wrap">
-    <h2>Core Strengths</h2>
+    <h2>What I Care About</h2>
     <div class="grid-3">
       <div class="strength">
-        <h3>AI &amp; Digital Transformation</h3>
+        <h3>Leadership</h3>
         <ul>
-          <li>AI adoption in day-to-day logistics workflows</li>
-          <li>Automation of reporting &amp; market intelligence</li>
-          <li>Microsoft 365 Copilot &amp; productivity use cases</li>
-          <li>Data-driven decision support</li>
-          <li>Knowledge management &amp; workflow design</li>
+          <li>Clear direction</li><li>Thoughtful collaboration</li><li>Real-world perspective</li>
         </ul>
       </div>
       <div class="strength">
-        <h3>Logistics Leadership</h3>
+        <h3>AI &amp; Digital Craft</h3>
         <ul>
-          <li>Ocean freight product leadership</li>
-          <li>Carrier, capacity &amp; yield management</li>
-          <li>P&amp;L ownership and business turnaround</li>
-          <li>Customer implementation &amp; SOP design</li>
-          <li>Procurement, tender &amp; pricing governance</li>
+          <li>Human-centred AI</li><li>Practical innovation</li><li>Meaningful experiences</li>
         </ul>
       </div>
       <div class="strength">
-        <h3>Entrepreneurial Profile</h3>
+        <h3>Hoppe.home</h3>
         <ul>
-          <li>Practical innovation mindset</li>
-          <li>End-to-end supply chain perspective</li>
-          <li>Human-centric change enablement</li>
-          <li>Bridges business and technology</li>
-          <li>Strong global network across freight forwarding &amp; carriers</li>
+          <li>Independent thinking</li><li>People and AI, together</li><li>A long-term outlook</li>
         </ul>
       </div>
     </div>
@@ -469,85 +2034,45 @@
 
 <section id="experience">
   <div class="wrap">
-    <h2>Professional Experience</h2>
+    <h2>Background</h2>
+    <p class="lede">My professional path is rooted in international logistics. It informs a simple belief: the most exciting technology is the kind that helps people make better connections and better decisions.</p>
+  </div>
+</section>
 
-    <div class="job">
-      <p class="role">Senior Manager Global Ocean Carrier &amp; Yield Management</p>
-      <p class="org">DHL Global Forwarding · Bremen, Germany</p>
-      <p class="when">May 2024 – Present</p>
-      <ul>
-        <li>Lead carrier and yield-related activities, translating market intelligence and carrier developments into commercial guidance for leadership decision-making.</li>
-        <li>Drive AI-assisted ways of working — from automated reporting and market intelligence to Copilot-based collaboration — to improve speed, consistency and decision quality.</li>
-        <li>Champion responsible AI adoption with realistic business cases, strong governance, data quality and user acceptance.</li>
-      </ul>
-      <div class="impact"><strong>Selected impact:</strong> Leading early Copilot adoption in Carrier &amp; Yield Management — onboarded 6 team members, moved the first recurring report to Copilot-assisted production, and reviewed and refined the complete Smart Engine functional specification (FSD) for AI orchestration.</div>
+<section id="ecosystem">
+  <div class="wrap">
+    <h2>AI &amp; Ecosystem — Hoppe.home</h2>
+    <p class="lede">Alongside my professional career, I founded <strong>Hoppe.home</strong>: an independent AI power house and think tank for human-centred innovation, digital craft and thoughtful experimentation.</p>
+
+    <div class="grid-4" style="margin-top: 24px;">
+      <div class="card">
+        <div class="stat">People</div>
+        <p>Technology that starts with the people it is meant to help.</p>
+      </div>
+      <div class="card">
+        <div class="stat">Ideas</div>
+        <p>Curiosity translated into useful, approachable experiences.</p>
+      </div>
+      <div class="card">
+        <div class="stat">Craft</div>
+        <p>Careful work, designed to be clear and enduring.</p>
+      </div>
+      <div class="card">
+        <div class="stat">Team</div>
+        <p>People and AI collaborators working towards shared possibilities.</p>
+      </div>
     </div>
 
-    <div class="job">
-      <p class="role">Director Ocean Product Services — Germany, Austria, Switzerland &amp; Eastern Europe</p>
-      <p class="org">Crane Worldwide Germany GmbH · Hamburg, Germany</p>
-      <p class="when">Apr 2023 – May 2024</p>
-      <ul>
-        <li>Led a 20-person ocean organization with shared P&amp;L responsibility, including planning, execution and business reviews with country management.</li>
-        <li>Built a standalone ocean pricing and procurement setup, including a structured rate repository and improved sales communication.</li>
-        <li>Established back-office support in India and standardized onboarding and process training for ocean staff.</li>
-        <li>Drove customer implementations, tender management and business development through customer-facing ocean capability presentations.</li>
-      </ul>
-      <div class="impact"><strong>Selected impact:</strong> Built a more structured and scalable ocean operating model, strengthening commercial responsiveness, process discipline and organizational clarity.</div>
-    </div>
+    <p class="lede" style="margin-top: 32px;"><strong>Where I'm focused</strong></p>
+    <ul class="ai-list" style="margin-top: 14px;">
+      <li><span class="dot"></span>Practical AI for people and organisations.</li>
+      <li><span class="dot"></span>Creative technology with a clear purpose.</li>
+      <li><span class="dot"></span>Responsible innovation shaped by real-world experience.</li>
+    </ul>
 
-    <div class="job">
-      <p class="role">Head of Ocean DACH — Germany, Austria &amp; Switzerland</p>
-      <p class="org">CEVA Logistics · Hong Kong &amp; Bremen, Germany</p>
-      <p class="when">Dec 2020 – Feb 2023</p>
-      <ul>
-        <li>Led an 80-person ocean organization with full P&amp;L ownership (~USD 130M), including budget, execution and monthly European management reviews.</li>
-        <li>Turned around a loss-making ocean business to sustained EBIT profitability in 2021–2022.</li>
-        <li>Reorganized export and import departments and stood up service centers for invoicing, file creation and customer reporting.</li>
-        <li>Served on the European Ocean Management Team as executive sponsor for productivity, cost and centralization initiatives.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <p class="role">Director Global Ocean Allocation &amp; Operations Management</p>
-      <p class="org">CEVA Logistics · Hong Kong</p>
-      <p class="when">Apr 2017 – Mar 2021</p>
-      <ul>
-        <li>Governed global ocean operations processes, work instructions and country performance reviews.</li>
-        <li>Designed CEVA's ocean allocation management process and led a team of allocation managers across FEWB, TPEB, ANZ and LATAM trades.</li>
-        <li>Contributed to shared service center development, offshoring and major ocean IT implementations, including myCEVA's online quotation and booking capability.</li>
-      </ul>
-      <div class="impact"><strong>Selected impact:</strong> Standardized global ocean allocation planning across FEWB, TPEB, ANZ and LATAM trades and supported the rollout of myCEVA's online quotation and booking capability.</div>
-    </div>
-
-    <div class="earlier">
-      <p class="role" style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Earlier Career Highlights</p>
-
-      <div class="earlier-item">
-        <p class="role">General Manager Ocean Operations Management, Greater China</p>
-        <p class="org">CEVA Logistics · Hong Kong · 2015 – 2017</p>
-        <p>Led approximately 500 ocean export and import operators across China, Hong Kong and Taiwan; shared P&amp;L responsibility above USD 35M; improved productivity in key stations and strengthened governance, training and shared-service structures.</p>
-      </div>
-      <div class="earlier-item">
-        <p class="role">Manager Global Business Process Ocean</p>
-        <p class="org">CEVA Logistics · Hong Kong · 2014 – 2015</p>
-        <p>Governed global standard ocean operations processes and supported development, testing, training and deployment of global process and system tools, including EDI, allocation, reporting and compliance-related solutions.</p>
-      </div>
-      <div class="earlier-item">
-        <p class="role">Business SME / Project Manager / Process Specialist</p>
-        <p class="org">CEVA Logistics · Bremen &amp; Hong Kong · 2011 – 2014</p>
-        <p>Led international process transformation and rollout projects across regions, translating business requirements into operational tools, training and standardized workflows.</p>
-      </div>
-      <div class="earlier-item">
-        <p class="role">Ocean Export, Pricing &amp; Development Leadership Roles</p>
-        <p class="org">Eagle Global Logistics / CEVA Logistics / Group7 · Bremen, Germany · 2003 – 2011</p>
-        <p>Progressed through operational, pricing, customer service, sales support and supervisory roles covering ocean and air freight, contract management, tender support, customer implementations and apprentice training.</p>
-      </div>
-      <div class="earlier-item">
-        <p class="role">Apprenticeship</p>
-        <p class="org">Circle International · Bremen, Germany · 2000 – 2003</p>
-        <p>Completed commercial freight forwarding training across airfreight, ocean freight, road freight, warehousing and finance.</p>
-      </div>
+    <div class="ecosystem-note">
+      <h3>Streaming &amp; MCP-first</h3>
+      <p>Hoppe.home is built around connected, responsive AI experiences: streaming context and MCP-first collaboration that lets people, agents and tools work together naturally. Joanna is the public face of that team. <a href="https://hoppe.mywire.org/joanna/" target="_blank" rel="noopener">Meet Joanna &rarr;</a></p>
     </div>
   </div>
 </section>
@@ -566,6 +2091,7 @@
   </div>
 </section>
 
+</main>
 <footer>
   <div class="wrap">
     <div class="footer-links">
@@ -576,7 +2102,8 @@
       <a href="https://summeradventure.ai/passport/joern-hoppe" target="_blank" rel="noopener">AI Adventure Passport</a>
       <a href="https://hoppe.mywire.org/joanna/" target="_blank" rel="noopener">Joanna &amp; Hoppe.home</a>
     </div>
-    <p>© 2026 Jörn Hoppe · Bremen, Germany</p>
+    <p class="footer-brand"><svg class="hoppe-h-pixel is-footer" aria-hidden="true" focusable="false"><use href="#pi-hmark"/></svg> Hoppe.home</p>
+    <p>© 2026 Jörn Hoppe · Felde, Germany</p>
   </div>
 </footer>
 
